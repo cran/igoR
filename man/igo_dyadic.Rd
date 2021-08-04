@@ -11,7 +11,7 @@ igo_dyadic(country1, country2, year = 1816:2014, ioname = NULL)
 }
 \arguments{
 \item{country1}{A single state, used as a base of comparison. It could be
-any valid name or code of a state as specified on \code{\link{states2016}}.}
+any valid name or code of a state as specified on \link{states2016}.}
 
 \item{country2}{A state of vector of states to be compared with
 \code{country1}.}
@@ -20,7 +20,7 @@ any valid name or code of a state as specified on \code{\link{states2016}}.}
 
 \item{ioname}{Optional. \code{ioname} or vector of \code{ioname}
 corresponding to the IGOs to be assessed. If \code{NULL} (the default),
-all IGOs would be extracted. See codes on \code{\link{igo_search}}.}
+all IGOs would be extracted. See codes on \code{\link[=igo_search]{igo_search()}}.}
 }
 \value{
 A coded data frame representing the years and country dyad (rows)
@@ -38,7 +38,7 @@ file distributed by The Correlates of War Project
 to its size.
 
 The result is a data frame containing the common years of the states
-selected via \code{country1, country2, year} by rows.
+selected via \verb{country1, country2, year} by rows.
 
 An additional column \code{dyadid}, computed as \code{(1000*ccode1)+ccode2}
 is provided in order to identify relationships.
@@ -63,7 +63,8 @@ original dataset on some IGOs regarding the "Missing Data" (-9) and
 "State Not System Member" (-1). However it is not clear how to fully
 replicate those values.
 
-See \href{https://correlatesofwar.org/data-sets/IGOs}{\strong{Codebook Version 3 IGO Data}}
+See
+\href{https://correlatesofwar.org/data-sets/IGOs}{\strong{Codebook Version 3 IGO Data}}
 }
 \examples{
 USA_CAN <- igo_dyadic("USA", "Spain")
@@ -86,6 +87,6 @@ IGO Version 3.0 Datasets." \emph{Journal of Peace Research} 57, no. 3
 (May 2020): 492-503. \doi{10.1177/0022343319881175}.
 }
 \seealso{
-\code{\link{state_year_format3}},  \code{\link{states2016}},
-\code{\link{igo_search}}.
+\link{state_year_format3},  \link{states2016},
+\code{\link[=igo_search]{igo_search()}}.
 }

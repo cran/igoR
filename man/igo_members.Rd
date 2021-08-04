@@ -8,7 +8,7 @@ igo_members(ioname, year = NULL, status = "Full Membership")
 }
 \arguments{
 \item{ioname}{Any valid \code{ioname} of an IGO as specified on
-\code{\link{igo_year_format3}}. It could be also a vector of IGOs.}
+\link{igo_year_format3}. It could be also a vector of IGOs.}
 
 \item{year}{Year to be assessed, an integer or an array of year.
 If \code{NULL} the latest year available
@@ -16,7 +16,7 @@ of the IGO would be extracted.}
 
 \item{status}{Character or vector with the membership status to be
 extracted. See Details
-on \code{\link{state_year_format3}}.}
+on \link{state_year_format3}.}
 }
 \value{
 A dataframe.
@@ -39,21 +39,25 @@ igo_members("UN", status = "No Membership")
 
 # Vectorized
 
-igo_members(c("NAFTA","EU"), year = 1993)
+igo_members(c("NAFTA", "EU"), year = 1993)
 
 # Use countrycodes package to get additional codes
 if (requireNamespace("countrycode", quietly = TRUE)) {
   library(countrycode)
   EU <- igo_members("EU")
-  EU$iso3c <- countrycode(EU$ccode, origin = "cown",
-                          destination = "iso3c")
-  EU$continent <- countrycode(EU$ccode, origin = "cown",
-                              destination = "continent")
+  EU$iso3c <- countrycode(EU$ccode,
+    origin = "cown",
+    destination = "iso3c"
+  )
+  EU$continent <- countrycode(EU$ccode,
+    origin = "cown",
+    destination = "continent"
+  )
 
   head(EU)
 }
 }
 \seealso{
-\code{\link{igo_year_format3}},
-\code{\link{igo_search}}, \code{\link{state_year_format3}}.
+\link{igo_year_format3},
+\code{\link[=igo_search]{igo_search()}}, \link{state_year_format3}.
 }

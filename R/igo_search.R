@@ -2,18 +2,18 @@
 #' @name igo_search
 #' @description Search any IGO by name or string pattern.
 #' @return A dataframe.
-#' @seealso \code{\link{igo_year_format3}}
+#' @seealso [igo_year_format3]
 #'
 #'
-#' @param pattern regex pattern. If \code{NULL} the function returns a dataset
-#' with all the IGOs on \code{\link{igo_year_format3}}. Integer values are
+#' @param pattern regex pattern. If `NULL` the function returns a dataset
+#' with all the IGOs on [igo_year_format3]. Integer values are
 #' accepted.
-#' @param exact Logical. When \code{TRUE} only exact matches are returned.
+#' @param exact Logical. When `TRUE` only exact matches are returned.
 #' @details The information of each IGO is retrieved based on the last year
-#' available on \code{\link{igo_year_format3}}.
+#' available on [igo_year_format3].
 #'
-#' An additional column \code{label} is provided. This column is a clean
-#' version of \code{longorgname}
+#' An additional column `label` is provided. This column is a clean
+#' version of `longorgname`
 #' @examples
 #' # All values
 #' all <- igo_search()
@@ -22,7 +22,7 @@
 #' colnames(all)
 #'
 #' # Search by pattern
-#' igo_search("EU")[,1:3]
+#' igo_search("EU")[, 1:3]
 #'
 #' igo_search("EU", exact = TRUE)[, 1:3]
 #'
@@ -32,11 +32,10 @@
 #' igo_search(10, exact = TRUE)[, 1:3]
 #'
 #' # Several patterns (regex style)
-#' igo_search("NAFTA|UN|EU")[,1:3]
+#' igo_search("NAFTA|UN|EU")[, 1:3]
 #'
 #' # Several patterns Exact (regex style)
-#' igo_search("^NAFTA$|^UN$|^EU$")[,1:3]
-#'
+#' igo_search("^NAFTA$|^UN$|^EU$")[, 1:3]
 #' @export
 igo_search <- function(pattern = NULL, exact = FALSE) {
   db <- igoR::igo_year_format3
@@ -51,7 +50,7 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
     aggregate(db_last, by = list(db_last$ioname), FUN = max)
   db_lastyear <- db_lastyear[, c("ioname", "year")]
 
-  db_end <-  merge(db_clean, db_lastyear)
+  db_end <- merge(db_clean, db_lastyear)
 
   # Create label column
   db_end$label <- db_end$longorgname

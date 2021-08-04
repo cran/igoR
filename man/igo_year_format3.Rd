@@ -7,26 +7,17 @@
 \format{
 data frame with 19335 rows. Relevant fields:
 \itemize{
-\item{\strong{ioname}: }{Short abbreviation of the IGO name.}
-\item{\strong{orgname}: }{Full IGO name.}
-\item{\strong{year}: }{Calendar Year.}
-\item{\strong{afghanistan...zimbabwe}: }{status of that state in the IGO:
-\tabular{cc}{
-\strong{Category} \tab \strong{Numerical Value}\cr
-No Membership \tab 0 \cr
-Full Membership \tab 1 \cr
-Associate Membership \tab 2 \cr
-Observer \tab 3\cr
-Missing data \tab -9 \cr
-State Not System Member \tab -1 \cr
-}
-}
-\item{\strong{sdate}: }{start date (year) that the IGO started.}
-\item{\strong{deaddate}: }{dead date (year) that the IGO dead.}
-\item{\strong{longorgname}: }{a longer version of the IGOs name
-(including previous names)}
-\item{\strong{ionum}: }{IGO id number in v2.1 and v3.0 of the data.}
-\item{\strong{version}: }{COW version number.}
+\item \strong{ioname}: Short abbreviation of the IGO name.
+\item \strong{orgname}: Full IGO name.
+\item \strong{year}: Calendar Year.
+\item \strong{afghanistan...zimbabwe}: status of that state in the IGO.
+See Details.
+\item \strong{sdate}: start date (year) that the IGO started.
+\item \strong{deaddate}: dead date (year) that the IGO dead.
+\item \strong{longorgname}: a longer version of the IGOs name (including previous
+names)
+\item \strong{ionum}: IGO id number in v2.1 and v3.0 of the data.
+\item \strong{version}: COW version number.
 }
 
 See \href{https://correlatesofwar.org/data-sets/IGOs}{\strong{Codebook Version 3 IGO Data}}
@@ -34,15 +25,26 @@ for full reference.
 }
 \source{
 \href{https://correlatesofwar.org/data-sets/IGOs}{Intergovernmental Organizations (v3)},
-The Correlates of War Project (IGO Data Stata Files)
+The Correlates of War Project (IGO Data Stata Files).
 }
 \description{
-Data on IGOs from 1815-2014, at the IGO-year level.
-Contains one record per IGO-year (with years listed at 5 year intervals
-through 1965, and annually thereafter).
+Data on IGOs from 1815-2014, at the IGO-year level. Contains one record per
+IGO-year (with years listed at 5 year intervals through 1965, and annually
+thereafter).
+}
+\details{
+Possible value of the status of that state in the IGO are:\tabular{lr}{
+   Category \tab Numerical value \cr
+   No Membership \tab 0 \cr
+   Full Membership \tab 1 \cr
+   Associate Membership \tab 2 \cr
+   Observer \tab 3 \cr
+   Missing data \tab -9 \cr
+   State Not System Member \tab -1 \cr
+}
 }
 \note{
-Raw data used internally by \pkg{igoR}
+Raw data used internally by \strong{igoR}.
 }
 \references{
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne Spencer
@@ -51,5 +53,5 @@ IGO Version 3.0 Datasets." \emph{Journal of Peace Research} 57, no. 3
 (May 2020): 492-503. \doi{10.1177/0022343319881175}.
 }
 \seealso{
-\code{\link{state_year_format3}}
+\link{state_year_format3}
 }

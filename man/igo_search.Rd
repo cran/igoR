@@ -8,7 +8,7 @@ igo_search(pattern = NULL, exact = FALSE)
 }
 \arguments{
 \item{pattern}{regex pattern. If \code{NULL} the function returns a dataset
-with all the IGOs on \code{\link{igo_year_format3}}. Integer values are
+with all the IGOs on \link{igo_year_format3}. Integer values are
 accepted.}
 
 \item{exact}{Logical. When \code{TRUE} only exact matches are returned.}
@@ -21,7 +21,7 @@ Search any IGO by name or string pattern.
 }
 \details{
 The information of each IGO is retrieved based on the last year
-available on \code{\link{igo_year_format3}}.
+available on \link{igo_year_format3}.
 
 An additional column \code{label} is provided. This column is a clean
 version of \code{longorgname}
@@ -34,7 +34,7 @@ nrow(all)
 colnames(all)
 
 # Search by pattern
-igo_search("EU")[,1:3]
+igo_search("EU")[, 1:3]
 
 igo_search("EU", exact = TRUE)[, 1:3]
 
@@ -44,12 +44,11 @@ igo_search(10)[, 1:3]
 igo_search(10, exact = TRUE)[, 1:3]
 
 # Several patterns (regex style)
-igo_search("NAFTA|UN|EU")[,1:3]
+igo_search("NAFTA|UN|EU")[, 1:3]
 
 # Several patterns Exact (regex style)
-igo_search("^NAFTA$|^UN$|^EU$")[,1:3]
-
+igo_search("^NAFTA$|^UN$|^EU$")[, 1:3]
 }
 \seealso{
-\code{\link{igo_year_format3}}
+\link{igo_year_format3}
 }
