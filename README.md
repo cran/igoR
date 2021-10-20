@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# igoR <img src="man/figures/logo.png" align="right" width="120" />
+# igoR <a href='https://dieghernan.github.io/igoR/'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -12,17 +12,19 @@ results](https://cranchecks.info/badges/worst/igoR)](https://cran.r-project.org/
 [![CRAN-Downloads](http://cranlogs.r-pkg.org/badges/grand-total/igoR)](https://cran.r-project.org/package=igoR)
 [![r-universe](https://dieghernan.r-universe.dev/badges/igoR)](https://dieghernan.r-universe.dev/)
 [![Rbuild-status](https://github.com/dieghernan/igoR/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/igoR/actions)
-[![codecov](https://codecov.io/gh/dieghernan/igoR/branch/master/graph/badge.svg?token=UH3VLTTTRE)](https://codecov.io/gh/dieghernan/igoR)
+[![codecov](https://codecov.io/gh/dieghernan/igoR/branch/main/graph/badge.svg?token=UH3VLTTTRE)](https://app.codecov.io/gh/dieghernan/igoR)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/igor/badge)](https://www.codefactor.io/repository/github/dieghernan/igor)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.4442958-blue)](https://doi.org/10.5281/zenodo.4442958)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4442958-blue)](https://doi.org/10.5281/zenodo.4442958)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![status](https://tinyverse.netlify.com/badge/igoR)](https://CRAN.R-project.org/package=igoR)
+
 <!-- badges: end -->
 
 The goal of `igoR` is to provide access and to extract information from
 the Intergovernmental Organizations Database (IGOs), version 3, provided
 by the Correlates of War Project <https://correlatesofwar.org/>
-(Pevehouse et al. (2020)).
+(Pevehouse et al. (2020)\>).
 
 The dataset (V3) includes information of **534** IGO from 1816 to 2014,
 as well as membership information.
@@ -30,7 +32,7 @@ as well as membership information.
 **Source**: [Intergovernmental Organizations
 (v3)](https://correlatesofwar.org/data-sets/IGOs).
 
-Documentation and vignettes on <https://dieghernan.github.io/igoR/>
+Documentation and vignettes on <https://dieghernan.github.io/igoR//>
 
 Additionally, a distribution of the State System Membership (Correlates
 of War Project (2017)) is included on this package.
@@ -109,7 +111,6 @@ eec_init <- igo_members(eec_code$ioname, year = eec_code$sdate)
 EEC, members (1958)
 
 ``` r
-
 # Latest date
 eec_end <- igo_members(eec_code$ioname)
 ```
@@ -139,38 +140,55 @@ EEC, members (1992)
 
 ## Citation
 
-To cite the `igoR` package in publications use:
+To cite the ‘igoR’ package in publications use this entry:
 
-D. Hernangómez (2021). igoR: Intergovernmental Organizations Database. R
-package version 0.1.2. <https://doi.org/10.5281/zenodo.4442958>.
+Hernangómez, D (2021). igoR: Intergovernmental Organizations Database. R
+package version 0.1.3. <https://doi.org/10.5281/zenodo.4442958>
 
 You can also use:
 
 ``` r
-citation("igoR")
+print(citation("igoR"), bibtex = TRUE)
 #> 
-#> To cite the 'igoR' package in publications use:
+#> To cite the 'igoR' package in publications use this entry:
 #> 
 #>   Hernangómez, D (2021). igoR: Intergovernmental Organizations
-#>   Database. R package version 0.1.2.
-#>   http://doi.org/10.5281/zenodo.4442958
+#>   Database. R package version 0.1.3.
+#>   https://doi.org/10.5281/zenodo.4442958
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
-#>   @Manual{,
+#>   @Misc{,
 #>     title = {igoR: Intergovernmental Organizations Database},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.1.2},
+#>     note = {R package version 0.1.3},
 #>     url = {https://dieghernan.github.io/igoR/},
 #>     doi = {10.5281/zenodo.4442958},
 #>   }
 #> 
-#> Please also cite:
+#> Please cite also:
 #> 
-#> Pevehouse, J. C. et al. (2020) 'Tracking organizations in the world:
-#> The Correlates of War IGO Version 3.0 datasets', Journal of Peace
-#> Research, 57(3), pp. 492–503. doi: 10.1177/0022343319881175.
+#>   Pevehouse JC, Nordstrom T, McManus RW, Jamison AS. Tracking
+#>   organizations in the world: The Correlates of War IGO Version 3.0
+#>   datasets. Journal of Peace Research. 2020;57(3):492-503.
+#>   doi:10.1177/0022343319881175
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Article{,
+#>     author = {Jon CW Pevehouse and Timothy Nordstrom and Roseanne W McManus and Anne Spencer Jamison},
+#>     title = {Tracking organizations in the world: The Correlates of War IGO Version 3.0 datasets},
+#>     journal = {Journal of Peace Research},
+#>     volume = {57},
+#>     number = {3},
+#>     pages = {492-503},
+#>     year = {2020},
+#>     doi = {10.1177/0022343319881175},
+#>     url = {https://doi.org/10.1177/0022343319881175},
+#>     eprint = {https://doi.org/10.1177/0022343319881175},
+#>     abstract = {This article summarizes the Correlates of War Intergovernmental Organizations (IGO) Version 3.0 datasets. The new datasets include information about the population of IGOs in the international system and state participation in those formal international institutions from 1816 to 2014. Consistent with Versions 2.0 and 2.3, Version 3.0 of the IGO data comes in three forms: country-year, IGO-year, and joint dyadic membership.},
+#>   }
 ```
 
 ## References

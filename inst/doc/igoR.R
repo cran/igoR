@@ -310,14 +310,3 @@ ggplot(Spain_Selected, aes(x = year, y = values)) +
     label = "Constitution\nof Spain"
   )
 
-## ----session_info, echo=FALSE-------------------------------------------------
-sessionInfo()
-
-end_time <- Sys.time()
-sessionInfo()
-
-cat("***")
-
-cat("vignette running time:")
-end_time - start_time
-

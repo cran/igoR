@@ -10,6 +10,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<meta name="author" content="Diego Hernangómez" />
 
 
 <title>Get started with the igoR package</title>
@@ -160,11 +161,12 @@ div.csl-indent {
 
 
 <h1 class="title toc-ignore">Get started with the igoR package</h1>
+<h4 class="author">Diego Hernangómez</h4>
 
 
 
 <p>This vignette is meant to provide <strong>useRs</strong> with an visual, explorable introduction to the capabilities of the <code>igoR</code> package.</p>
-<p>The analysis would be based on those provided on <span class="citation">Pevehouse et al. (2020)</span>. For more information on the IGO data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs">Intergovernmental Organizations (v3)</a>.</p>
+<p>The analysis would be based on those provided on <span class="citation">Pevehouse et al. (2020)</span>&gt;. For more information on the IGO data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs">Intergovernmental Organizations (v3)</a>.</p>
 <p><em>Note that the dyadic dataset is not provided in the package, due its size (~500 MB on Stata <code>.dta</code> format). However,</em> <code>igo_dyadic()</code> <em>function provides similar results.</em></p>
 <div id="definitions" class="section level2">
 <h2>Definitions</h2>
@@ -186,7 +188,7 @@ div.csl-indent {
 <h3>When does an IGO die?</h3>
 <p>Version 3.0 of the IGO data set uses the following criteria:</p>
 <ul>
-<li>An organization is considered terminated when the following words were used to describe the context of the organization:
+<li><p>An organization is considered terminated when the following words were used to describe the context of the organization:</p>
 <ul>
 <li>Replaced;</li>
 <li>Succeeded;</li>
@@ -200,7 +202,7 @@ div.csl-indent {
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
-<p>This section provides some quick analysis based on the figures of <span class="citation">Pevehouse et al. (2020)</span>.</p>
+<p>This section provides some quick analysis based on the figures of <span class="citation">Pevehouse et al. (2020)</span>&gt;.</p>
 <div id="initial-setup" class="section level3">
 <h3>Initial Setup</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -211,7 +213,7 @@ div.csl-indent {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <details>
 <summary>
-<strong>Custom <code>ggplot2</code> theme</strong>: <code>theme_igoR</code>
+<p><strong>Custom <code>ggplot2</code> theme</strong>: <code>theme_igoR</code></p>
 </summary>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>theme_igoR <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
@@ -312,10 +314,10 @@ Figure 2. Birth and death rates of IGOs, 1816-2014
 </div>
 <div id="igos-across-regions" class="section level3">
 <h3>IGOs across regions</h3>
-<p>A plot with the number of IGOs by region. The definition of region is based on the original definition by <span class="citation">Pevehouse et al. (2020)</span></p>
+<p>A plot with the number of IGOs by region. The definition of region is based on the original definition by <span class="citation">Pevehouse et al. (2020)</span>&gt;</p>
 <details>
 <summary>
-<strong>Regions definition</strong>
+<p><strong>Regions definition</strong></p>
 </summary>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracted from analysis-jpr.do - See https://www.prio.org/JPR/Datasets/</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -546,75 +548,6 @@ Figure 5. Number of IGOs with full shared memberships with Spain (selected count
 </p>
 </div>
 </div>
-</div>
-<div id="session-info" class="section level2">
-<h2>Session Info</h2>
-<details>
-<summary>
-<strong>Details</strong>
-</summary>
-<pre><code>#&gt; R version 4.1.0 (2021-05-18)
-#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 10 x64 (build 19043)
-#&gt; 
-#&gt; Matrix products: default
-#&gt; 
-#&gt; locale:
-#&gt; [1] LC_COLLATE=C                   LC_CTYPE=Spanish_Spain.1252   
-#&gt; [3] LC_MONETARY=Spanish_Spain.1252 LC_NUMERIC=C                  
-#&gt; [5] LC_TIME=Spanish_Spain.1252    
-#&gt; 
-#&gt; attached base packages:
-#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
-#&gt; 
-#&gt; other attached packages:
-#&gt; [1] dplyr_1.0.7   ggplot2_3.3.5 igoR_0.1.2   
-#&gt; 
-#&gt; loaded via a namespace (and not attached):
-#&gt;  [1] highr_0.9         bslib_0.2.5.1     compiler_4.1.0    pillar_1.6.2     
-#&gt;  [5] jquerylib_0.1.4   tools_4.1.0       digest_0.6.27     jsonlite_1.7.2   
-#&gt;  [9] evaluate_0.14     lifecycle_1.0.0   tibble_3.1.3      gtable_0.3.0     
-#&gt; [13] pkgconfig_2.0.3   rlang_0.4.11      DBI_1.1.1         yaml_2.2.1       
-#&gt; [17] xfun_0.24         withr_2.4.2       stringr_1.4.0     knitr_1.33       
-#&gt; [21] generics_0.1.0    sass_0.4.0        vctrs_0.3.8       grid_4.1.0       
-#&gt; [25] tidyselect_1.1.1  glue_1.4.2        R6_2.5.0          fansi_0.5.0      
-#&gt; [29] rmarkdown_2.9     farver_2.1.0      purrr_0.3.4       magrittr_2.0.1   
-#&gt; [33] scales_1.1.1      htmltools_0.5.1.1 ellipsis_0.3.2    assertthat_0.2.1 
-#&gt; [37] colorspace_2.0-2  labeling_0.4.2    utf8_1.2.2        stringi_1.7.3    
-#&gt; [41] munsell_0.5.0     crayon_1.4.1
-#&gt; R version 4.1.0 (2021-05-18)
-#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
-#&gt; Running under: Windows 10 x64 (build 19043)
-#&gt; 
-#&gt; Matrix products: default
-#&gt; 
-#&gt; locale:
-#&gt; [1] LC_COLLATE=C                   LC_CTYPE=Spanish_Spain.1252   
-#&gt; [3] LC_MONETARY=Spanish_Spain.1252 LC_NUMERIC=C                  
-#&gt; [5] LC_TIME=Spanish_Spain.1252    
-#&gt; 
-#&gt; attached base packages:
-#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
-#&gt; 
-#&gt; other attached packages:
-#&gt; [1] dplyr_1.0.7   ggplot2_3.3.5 igoR_0.1.2   
-#&gt; 
-#&gt; loaded via a namespace (and not attached):
-#&gt;  [1] highr_0.9         bslib_0.2.5.1     compiler_4.1.0    pillar_1.6.2     
-#&gt;  [5] jquerylib_0.1.4   tools_4.1.0       digest_0.6.27     jsonlite_1.7.2   
-#&gt;  [9] evaluate_0.14     lifecycle_1.0.0   tibble_3.1.3      gtable_0.3.0     
-#&gt; [13] pkgconfig_2.0.3   rlang_0.4.11      DBI_1.1.1         yaml_2.2.1       
-#&gt; [17] xfun_0.24         withr_2.4.2       stringr_1.4.0     knitr_1.33       
-#&gt; [21] generics_0.1.0    sass_0.4.0        vctrs_0.3.8       grid_4.1.0       
-#&gt; [25] tidyselect_1.1.1  glue_1.4.2        R6_2.5.0          fansi_0.5.0      
-#&gt; [29] rmarkdown_2.9     farver_2.1.0      purrr_0.3.4       magrittr_2.0.1   
-#&gt; [33] scales_1.1.1      htmltools_0.5.1.1 ellipsis_0.3.2    assertthat_0.2.1 
-#&gt; [37] colorspace_2.0-2  labeling_0.4.2    utf8_1.2.2        stringi_1.7.3    
-#&gt; [41] munsell_0.5.0     crayon_1.4.1
-#&gt; ***
-#&gt; vignette running time:
-#&gt; Time difference of 3.996423 secs</code></pre>
-</details>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>
