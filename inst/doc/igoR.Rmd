@@ -1,7 +1,10 @@
 ---
 title: "Get started with the igoR package"
 author: "Diego Hernangómez"
+description: >
+  Introduction to the capabilities of the package.
 bibliography: refs_igo.bib
+link-citations: yes
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Get started with the igoR package}
@@ -28,9 +31,9 @@ knitr::opts_chunk$set(
 This vignette is meant to provide **useRs** with an visual, explorable
 introduction to the capabilities of the `igoR` package.
 
-The analysis would be based on those provided on
-@doi:10.1177/0022343319881175>. For more information on the IGO data sets and
-additional downloads, see [Intergovernmental Organizations
+The analysis would be based on those provided on [@pevehouse2020]. For more
+information on the IGO data sets and additional downloads, see
+[Intergovernmental Organizations
 (v3)](https://correlatesofwar.org/data-sets/IGOs).
 
 *Note that the dyadic dataset is not provided in the package, due its size
@@ -39,7 +42,7 @@ similar results.*
 
 ## Definitions
 
-From @codebook_igo_2019:
+From @pevehouse2019:
 
 ### What is an IGO?
 
@@ -76,7 +79,7 @@ Version 3.0 of the IGO data set uses the following criteria:
 ## Analysis
 
 This section provides some quick analysis based on the figures of
-@doi:10.1177/0022343319881175>.
+@pevehouse2020.
 
 ### Initial Setup
 
@@ -195,7 +198,7 @@ ggplot(births_and_deads, aes(x = year, y = value)) +
 ### IGOs across regions
 
 A plot with the number of IGOs by region. The definition of region is based on
-the original definition by @doi:10.1177/0022343319881175>
+the original definition by @pevehouse2020.
 
 <details>
 

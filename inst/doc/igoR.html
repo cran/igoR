@@ -15,7 +15,19 @@
 
 <title>Get started with the igoR package</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -25,6 +37,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -148,7 +161,187 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -165,30 +358,45 @@ div.csl-indent {
 
 
 
-<p>This vignette is meant to provide <strong>useRs</strong> with an visual, explorable introduction to the capabilities of the <code>igoR</code> package.</p>
-<p>The analysis would be based on those provided on <span class="citation">Pevehouse et al. (2020)</span>&gt;. For more information on the IGO data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs">Intergovernmental Organizations (v3)</a>.</p>
-<p><em>Note that the dyadic dataset is not provided in the package, due its size (~500 MB on Stata <code>.dta</code> format). However,</em> <code>igo_dyadic()</code> <em>function provides similar results.</em></p>
+<p>This vignette is meant to provide <strong>useRs</strong> with an
+visual, explorable introduction to the capabilities of the
+<code>igoR</code> package.</p>
+<p>The analysis would be based on those provided on <span class="citation">(<a href="#ref-pevehouse2020" role="doc-biblioref">J.
+C. Pevehouse et al. 2020</a>)</span>. For more information on the IGO
+data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs">Intergovernmental
+Organizations (v3)</a>.</p>
+<p><em>Note that the dyadic dataset is not provided in the package, due
+its size (~500 MB on Stata <code>.dta</code> format). However,</em>
+<code>igo_dyadic()</code> <em>function provides similar
+results.</em></p>
 <div id="definitions" class="section level2">
 <h2>Definitions</h2>
-<p>From <span class="citation">Pevehouse, McManus, and Nordstrom (2019)</span>:</p>
+<p>From <span class="citation">J. Pevehouse, McManus, and Nordstrom (<a href="#ref-pevehouse2019" role="doc-biblioref">2019</a>)</span>:</p>
 <div id="what-is-an-igo" class="section level3">
 <h3>What is an IGO?</h3>
-<p>The definition of an Intergovernmental Organization (IGO) on the original dataset is based on the following criteria:</p>
+<p>The definition of an Intergovernmental Organization (IGO) on the
+original dataset is based on the following criteria:</p>
 <ol style="list-style-type: decimal">
-<li><p>An IGO must consist of at least three members of the <a href="https://correlatesofwar.org/data-sets/cow-country-codes">COW-defined state system</a>.</p></li>
-<li><p>An IGO must hold regular plenary sessions at least once every ten years</p></li>
-<li><p>An IGO must possess a permanent secretariat and corresponding headquarters.</p></li>
+<li><p>An IGO must consist of at least three members of the <a href="https://correlatesofwar.org/data-sets/cow-country-codes">COW-defined
+state system</a>.</p></li>
+<li><p>An IGO must hold regular plenary sessions at least once every ten
+years</p></li>
+<li><p>An IGO must possess a permanent secretariat and corresponding
+headquarters.</p></li>
 </ol>
 </div>
 <div id="when-does-an-igo-actually-begin" class="section level3">
 <h3>When does an IGO actually begin?</h3>
-<p>The data sets begins to code an IGO by identifying the first year in which the organization functions. In some cases, individual members are listed by year of accession or signature.</p>
+<p>The data sets begins to code an IGO by identifying the first year in
+which the organization functions. In some cases, individual members are
+listed by year of accession or signature.</p>
 </div>
 <div id="when-does-an-igo-die" class="section level3">
 <h3>When does an IGO die?</h3>
 <p>Version 3.0 of the IGO data set uses the following criteria:</p>
 <ul>
-<li><p>An organization is considered terminated when the following words were used to describe the context of the organization:</p>
+<li><p>An organization is considered terminated when the following words
+were used to describe the context of the organization:</p>
 <ul>
 <li>Replaced;</li>
 <li>Succeeded;</li>
@@ -202,7 +410,8 @@ div.csl-indent {
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
-<p>This section provides some quick analysis based on the figures of <span class="citation">Pevehouse et al. (2020)</span>&gt;.</p>
+<p>This section provides some quick analysis based on the figures of
+<span class="citation">J. C. Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>.</p>
 <div id="initial-setup" class="section level3">
 <h3>Initial Setup</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -213,7 +422,8 @@ div.csl-indent {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <details>
 <summary>
-<p><strong>Custom <code>ggplot2</code> theme</strong>: <code>theme_igoR</code></p>
+<p><strong>Custom <code>ggplot2</code> theme</strong>:
+<code>theme_igoR</code></p>
 </summary>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>theme_igoR <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
@@ -240,7 +450,8 @@ div.csl-indent {
 </div>
 <div id="igos-overview" class="section level3">
 <h3>IGOs overview</h3>
-<p>The following code extracts the number of IGOs and states included on this package. The years available are 1816 to 2014.</p>
+<p>The following code extracts the number of IGOs and states included on
+this package. The years available are 1816 to 2014.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>igos_by_year <span class="ot">&lt;-</span> igo_year_format3 <span class="sc">%&gt;%</span></span>
@@ -314,7 +525,9 @@ Figure 2. Birth and death rates of IGOs, 1816-2014
 </div>
 <div id="igos-across-regions" class="section level3">
 <h3>IGOs across regions</h3>
-<p>A plot with the number of IGOs by region. The definition of region is based on the original definition by <span class="citation">Pevehouse et al. (2020)</span>&gt;</p>
+<p>A plot with the number of IGOs by region. The definition of region is
+based on the original definition by <span class="citation">J. C.
+Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>.</p>
 <details>
 <summary>
 <p><strong>Regions definition</strong></p>
@@ -393,7 +606,8 @@ Figure 2. Birth and death rates of IGOs, 1816-2014
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>regions<span class="sc">$</span>region <span class="ot">&lt;-</span></span>
 <span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(regions<span class="sc">$</span>ionum <span class="sc">%in%</span> MiddleEast, <span class="st">&quot;Middle East&quot;</span>, regions<span class="sc">$</span>region)</span></code></pre></div>
 </details>
-<p>After we have created a data frame with the regions, we can classify the IGOs by region.</p>
+<p>After we have created a data frame with the regions, we can classify
+the IGOs by region.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># regions dataset created on previous chunk</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -433,7 +647,8 @@ Figure 3. IGO counts across regions, 1816-2014
 </div>
 <div id="selected-countries-asia" class="section level3">
 <h3>Selected Countries: Asia</h3>
-<p>Number of memberships of a country. We select here five countries on Asia: India, China, Pakistan, Indonesia and Bangladesh.</p>
+<p>Number of memberships of a country. We select here five countries on
+Asia: India, China, Pakistan, Indonesia and Bangladesh.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>asia5_cntries <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;China&quot;</span>, <span class="st">&quot;India&quot;</span>,</span>
@@ -490,7 +705,8 @@ Figure 4. IGO membership: five states in Asia, 1865-2014
 </div>
 <div id="shared-memberships" class="section level3">
 <h3>Shared memberships</h3>
-<p>Number of shared full memberships between Spain and four selected countries:</p>
+<p>Number of shared full memberships between Spain and four selected
+countries:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>selected_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;France&quot;</span>,</span>
@@ -544,7 +760,8 @@ Figure 4. IGO membership: five states in Asia, 1865-2014
 <div class="figure">
 <img src="data:image/png;base64,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" alt="Figure 5. Number of IGOs with full shared memberships with Spain (selected countries), 1816-2014" width="100%" height="60%" />
 <p class="caption">
-Figure 5. Number of IGOs with full shared memberships with Spain (selected countries), 1816-2014
+Figure 5. Number of IGOs with full shared memberships with Spain
+(selected countries), 1816-2014
 </p>
 </div>
 </div>
@@ -552,11 +769,16 @@ Figure 5. Number of IGOs with full shared memberships with Spain (selected count
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-codebook_igo_2019" class="csl-entry">
-Pevehouse, Jon CW, Roseanne W McManus, and Timothy Nordstrom. 2019. <span>“Codebook for Correlates of War 3 International Governmental Organizations Data Set Version 3.0.”</span> <a href="https://correlatesofwar.org/data-sets/IGOs">https://correlatesofwar.org/data-sets/IGOs</a>; The Correlates of War Project.
+<div id="ref-pevehouse2020" class="csl-entry">
+Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne
+Spencer Jamison. 2020. <span>“Tracking Organizations in the World: The
+Correlates of War IGO Version 3.0 Datasets.”</span> <em>Journal of Peace
+Research</em> 57 (3): 492–503.
 </div>
-<div id="ref-doi:10.1177/0022343319881175" class="csl-entry">
-Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne Spencer Jamison. 2020. <span>“Tracking Organizations in the World: The Correlates of War <span>IGO</span> Version 3.0 Datasets.”</span> <em>Journal of Peace Research</em> 57 (3): 492–503. <a href="https://doi.org/10.1177/0022343319881175">https://doi.org/10.1177/0022343319881175</a>.
+<div id="ref-pevehouse2019" class="csl-entry">
+Pevehouse, Jon, Roseanne McManus, and Timothy Nordstrom. 2019.
+<span>“Codebook for Correlates of War 3 International Governmental
+Organizations Data Set Version 3.0.”</span> <a href="https://correlatesofwar.org/data-sets/IGOs/codebook-version-3-igo-data">https://correlatesofwar.org/data-sets/IGOs/codebook-version-3-igo-data</a>.
 </div>
 </div>
 </div>

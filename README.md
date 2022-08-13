@@ -9,7 +9,7 @@
 status](https://www.r-pkg.org/badges/version/igoR)](https://CRAN.R-project.org/package=igoR)
 [![CRAN
 results](https://cranchecks.info/badges/worst/igoR)](https://cran.r-project.org/web/checks/check_results_igoR.html)
-[![CRAN-Downloads](http://cranlogs.r-pkg.org/badges/grand-total/igoR)](https://cran.r-project.org/package=igoR)
+[![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/igoR)](https://cran.r-project.org/package=igoR)
 [![r-universe](https://dieghernan.r-universe.dev/badges/igoR)](https://dieghernan.r-universe.dev/)
 [![Rbuild-status](https://github.com/dieghernan/igoR/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/igoR/actions)
 [![codecov](https://codecov.io/gh/dieghernan/igoR/branch/main/graph/badge.svg?token=UH3VLTTTRE)](https://app.codecov.io/gh/dieghernan/igoR)
@@ -23,8 +23,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 The goal of `igoR` is to provide access and to extract information from
 the Intergovernmental Organizations Database (IGOs), version 3, provided
-by the Correlates of War Project <https://correlatesofwar.org/>
-(Pevehouse et al. (2020)\>).
+by the Correlates of War Project ([Pevehouse et al.
+2020](#ref-pevehouse2020)).
 
 The dataset (V3) includes information of **534** IGO from 1816 to 2014,
 as well as membership information.
@@ -32,10 +32,11 @@ as well as membership information.
 **Source**: [Intergovernmental Organizations
 (v3)](https://correlatesofwar.org/data-sets/IGOs).
 
-Documentation and vignettes on <https://dieghernan.github.io/igoR//>
+Documentation and vignettes on <https://dieghernan.github.io/igoR/>
 
-Additionally, a distribution of the State System Membership (Correlates
-of War Project (2017)) is included on this package.
+Additionally, a distribution of the State System Membership ([Correlates
+of War Project 2017](#ref-correlatesofwarproject2017)) is included on
+this package.
 
 ## Installation
 
@@ -79,7 +80,7 @@ result_sugar <- igo_search("Sugar")
 ```
 
 | ionum | ioname  | orgname                                    | longorgname                                                     | label                                                           | sdate | deaddate | dead | integrated | replaced | igocode | version | accuracyofpre1965membershipdates                      | sourcesandnotes | imputed | political | social | economic |
-| ----: | :------ | :----------------------------------------- | :-------------------------------------------------------------- | :-------------------------------------------------------------- | ----: | -------: | ---: | ---------: | -------: | ------: | ------: | :---------------------------------------------------- | :-------------- | ------: | --------: | -----: | -------: |
+|------:|:--------|:-------------------------------------------|:----------------------------------------------------------------|:----------------------------------------------------------------|------:|---------:|-----:|-----------:|---------:|--------:|--------:|:------------------------------------------------------|:----------------|--------:|----------:|-------:|---------:|
 |    40 | AMSC    | African/Malgasy Sugar Council              | African and Malagasy Sugar Council                              | African and Malagasy Sugar Council                              |  1966 |     1977 |    1 |          0 |        0 |      NA |     2.1 | Not applicable - created 1965 or later                |                 |       0 |         0 |      0 |        1 |
 |  1920 | GLACSEC | Group of L/A & Carib. Sugar Exp. Countries | Group of Latin American and Caribbean Sugar Exporting Countries | Group of Latin American and Caribbean Sugar Exporting Countries |  1974 |     2001 |    1 |          0 |        0 |      NA |     2.3 | Not applicable - created 1965 or later                |                 |       0 |         1 |      0 |        0 |
 |  3130 | ISuC    | Intl Sugar Council                         | International Sugar Council                                     | International Sugar Council                                     |  1937 |     1967 |    1 |          0 |        0 |      91 |     3.0 | Within 5 years                                        |                 |       0 |         0 |      1 |        0 |
@@ -92,7 +93,6 @@ Community](https://en.wikipedia.org/wiki/European_Economic_Community)
 over time:
 
 ``` r
-
 eec_code <- igo_search("EEC", exact = TRUE)
 
 # Founding
@@ -100,7 +100,7 @@ eec_init <- igo_members(eec_code$ioname, year = eec_code$sdate)
 ```
 
 | ioname | ccode | state       | statenme                | year | value | category        | orgname                     |
-| :----- | ----: | :---------- | :---------------------- | ---: | ----: | :-------------- | :-------------------------- |
+|:-------|------:|:------------|:------------------------|-----:|------:|:----------------|:----------------------------|
 | EEC    |   211 | belgium     | Belgium                 | 1958 |     1 | Full Membership | European Economic Community |
 | EEC    |   220 | france      | France                  | 1958 |     1 | Full Membership | European Economic Community |
 | EEC    |   325 | italy       | Italy                   | 1958 |     1 | Full Membership | European Economic Community |
@@ -116,7 +116,7 @@ eec_end <- igo_members(eec_code$ioname)
 ```
 
 | ioname | ccode | state       | statenme       | year | value | category        | orgname                     |
-| :----- | ----: | :---------- | :------------- | ---: | ----: | :-------------- | :-------------------------- |
+|:-------|------:|:------------|:---------------|-----:|------:|:----------------|:----------------------------|
 | EEC    |   211 | belgium     | Belgium        | 1992 |     1 | Full Membership | European Economic Community |
 | EEC    |   390 | denmark     | Denmark        | 1992 |     1 | Full Membership | European Economic Community |
 | EEC    |   220 | france      | France         | 1992 |     1 | Full Membership | European Economic Community |
@@ -134,80 +134,47 @@ EEC, members (1992)
 
 ## Recommended packages
 
-  - `countrycode` for converting country names and codes across
+-   `countrycode` for converting country names and codes across
     different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc..)
-  - `dplyr` for data manipulation.
+-   `dplyr` for data manipulation.
 
 ## Citation
 
-To cite the ‘igoR’ package in publications use this entry:
+To cite ‘igoR’ in publications use:
 
-Hernangómez, D (2021). igoR: Intergovernmental Organizations Database. R
-package version 0.1.3. <https://doi.org/10.5281/zenodo.4442958>
+Hernangomez D (2022). igoR: Intergovernmental Organizations Database.
+<https://doi.org/10.5281/zenodo.4442958>,
+<https://dieghernan.github.io/igoR/>
 
-You can also use:
+A BibTeX entry for LaTeX users:
 
-``` r
-print(citation("igoR"), bibtex = TRUE)
-#> 
-#> To cite the 'igoR' package in publications use this entry:
-#> 
-#>   Hernangómez, D (2021). igoR: Intergovernmental Organizations
-#>   Database. R package version 0.1.3.
-#>   https://doi.org/10.5281/zenodo.4442958
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Misc{,
-#>     title = {igoR: Intergovernmental Organizations Database},
-#>     author = {Diego Hernangómez},
-#>     year = {2021},
-#>     note = {R package version 0.1.3},
-#>     url = {https://dieghernan.github.io/igoR/},
-#>     doi = {10.5281/zenodo.4442958},
-#>   }
-#> 
-#> Please cite also:
-#> 
-#>   Pevehouse JC, Nordstrom T, McManus RW, Jamison AS. Tracking
-#>   organizations in the world: The Correlates of War IGO Version 3.0
-#>   datasets. Journal of Peace Research. 2020;57(3):492-503.
-#>   doi:10.1177/0022343319881175
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Article{,
-#>     author = {Jon CW Pevehouse and Timothy Nordstrom and Roseanne W McManus and Anne Spencer Jamison},
-#>     title = {Tracking organizations in the world: The Correlates of War IGO Version 3.0 datasets},
-#>     journal = {Journal of Peace Research},
-#>     volume = {57},
-#>     number = {3},
-#>     pages = {492-503},
-#>     year = {2020},
-#>     doi = {10.1177/0022343319881175},
-#>     url = {https://doi.org/10.1177/0022343319881175},
-#>     eprint = {https://doi.org/10.1177/0022343319881175},
-#>     abstract = {This article summarizes the Correlates of War Intergovernmental Organizations (IGO) Version 3.0 datasets. The new datasets include information about the population of IGOs in the international system and state participation in those formal international institutions from 1816 to 2014. Consistent with Versions 2.0 and 2.3, Version 3.0 of the IGO data comes in three forms: country-year, IGO-year, and joint dyadic membership.},
-#>   }
-```
+    @Manual{R-igoR,
+      title = {{igoR}: Intergovernmental Organizations Database},
+      doi = {10.5281/zenodo.4442958},
+      author = {Diego Hernangómez},
+      year = {2022},
+      version = {0.1.4},
+      url = {https://dieghernan.github.io/igoR/},
+      abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020). Version 3 includes information from 1815 to 2014.},
+    }
 
 ## References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-cow_2017">
+<div id="ref-correlatesofwarproject2017" class="csl-entry">
 
-Correlates of War Project. 2017. “State System Membership List, v2016.”
-<https://correlatesofwar.org/>.
+Correlates of War Project. 2017. “State System Membership List, V2016.”
+<https://correlatesofwar.org/data-sets/state-system-membership>.
 
 </div>
 
-<div id="ref-doi:10.1177/0022343319881175">
+<div id="ref-pevehouse2020" class="csl-entry">
 
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne
 Spencer Jamison. 2020. “Tracking Organizations in the World: The
 Correlates of War IGO Version 3.0 Datasets.” *Journal of Peace Research*
-57 (3): 492–503. <https://doi.org/10.1177/0022343319881175>.
+57 (3): 492–503.
 
 </div>
 
