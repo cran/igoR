@@ -1,5 +1,4 @@
 ## ----knitropts, include=FALSE-------------------------------------------------
-
 start_time <- Sys.time()
 
 knitr::opts_chunk$set(
@@ -14,7 +13,6 @@ knitr::opts_chunk$set(
 )
 
 ## ----setup--------------------------------------------------------------------
-
 library(igoR)
 
 # Additional libraries
@@ -22,7 +20,6 @@ library(ggplot2)
 library(dplyr)
 
 ## ----custom_theme-------------------------------------------------------------
-
 theme_igoR <- theme(
   axis.title = element_blank(),
   axis.line.x.bottom = element_line("black"),
@@ -34,7 +31,7 @@ theme_igoR <- theme(
   legend.key = element_blank(),
   legend.key.width = unit(2, "cm"),
   legend.text = element_text(family = "sans", size = 13),
-  legend.box.background = element_rect(color = "black", size = 1),
+  legend.box.background = element_rect(color = "black", linewidth = 1),
   legend.spacing = unit(1.2 / 100, "npc"),
   plot.background = element_rect("grey90"),
   plot.margin = unit(rep(0.5, 4), "cm"),
@@ -45,7 +42,6 @@ theme_igoR <- theme(
 )
 
 ## ----Fig1, message=FALSE, warning=FALSE, fig.cap="Figure 1. IGOs and states in the world system, 1816-2014"----
-
 # Summarize
 igos_by_year <- igo_year_format3 %>%
   group_by(year) %>%
@@ -67,14 +63,13 @@ all_by_year$variable <- factor(all_by_year$variable,
 
 # Plot
 ggplot(all_by_year, aes(x = year, y = value)) +
-  geom_line(size = 0.8, color = "black", aes(linetype = variable)) +
+  geom_line(color = "black", aes(linetype = variable)) +
   scale_linetype_manual(values = c("solid", "dashed")) +
   geom_vline(xintercept = c(1945, 1989)) +
   ylim(0, 400) +
   theme_igoR
 
 ## ----Fig2, message=FALSE, warning=FALSE, fig.cap="Figure 2. Birth and death rates of IGOs, 1816-2014"----
-
 # Births and deads by year
 
 df <- igo_search()
@@ -97,7 +92,7 @@ births_and_deads <- rbind(births, deads) %>% filter(!is.na(year))
 
 # Plot
 ggplot(births_and_deads, aes(x = year, y = value)) +
-  geom_line(size = 0.8, color = "black", aes(linetype = variable)) +
+  geom_line(color = "black", aes(linetype = variable)) +
   scale_linetype_manual(values = c("solid", "dashed")) +
   ylim(0, 15) +
   theme_igoR
@@ -178,7 +173,6 @@ regions$region <-
   ifelse(regions$ionum %in% MiddleEast, "Middle East", regions$region)
 
 ## ----Fig3, message=FALSE, warning=FALSE, fig.cap="Figure 3. IGO counts across regions, 1816-2014"----
-
 # regions dataset created on previous chunk
 
 # All IGOs
@@ -200,7 +194,7 @@ regionsum$region <- factor(regionsum$region,
 
 # Plot
 ggplot(regionsum, aes(x = year, y = value)) +
-  geom_line(size = 0.8, color = "black", aes(linetype = region)) +
+  geom_line(color = "black", aes(linetype = region)) +
   scale_linetype_manual(values = c(
     "solid", "dashed",
     "dotted", "dotdash", "longdash"
@@ -210,7 +204,6 @@ ggplot(regionsum, aes(x = year, y = value)) +
   theme_igoR
 
 ## ----Fig4, message=FALSE, warning=FALSE, fig.cap="Figure 4. IGO membership: five states in Asia, 1865-2014"----
-
 asia5_cntries <- c(
   "China", "India",
   "Pakistan", "Indonesia",
@@ -238,7 +231,7 @@ asia5$statenme <- factor(asia5$statenme,
 
 # Plot
 ggplot(asia5, aes(x = year, y = values)) +
-  geom_line(size = 0.8, color = "black", aes(linetype = statenme)) +
+  geom_line(color = "black", aes(linetype = statenme)) +
   scale_linetype_manual(values = c(
     "solid", "dashed",
     "dotted", "dotdash",
@@ -259,7 +252,6 @@ ggplot(asia5, aes(x = year, y = values)) +
   theme_igoR
 
 ## ----Fig5, message=FALSE, warning=FALSE, fig.cap="Figure 5. Number of IGOs with full shared memberships with Spain (selected countries), 1816-2014"----
-
 selected_countries <- c(
   "France",
   "Morocco",
@@ -275,7 +267,7 @@ Spain_Selected$values <- rowSums(Spain_Selected == 1)
 
 # Plot
 ggplot(Spain_Selected, aes(x = year, y = values)) +
-  geom_line(size = 0.8, color = "black", aes(linetype = statenme2)) +
+  geom_line(color = "black", aes(linetype = statenme2)) +
   scale_linetype_manual(values = c(
     "solid", "dashed",
     "dotted", "dotdash"

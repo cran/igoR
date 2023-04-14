@@ -8,10 +8,10 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/igoR)](https://CRAN.R-project.org/package=igoR)
 [![CRAN
-results](https://cranchecks.info/badges/worst/igoR)](https://cran.r-project.org/web/checks/check_results_igoR.html)
+results](https://badges.cranchecks.info/worst/igoR.svg)](https://cran.r-project.org/web/checks/check_results_igoR.html)
 [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/igoR)](https://cran.r-project.org/package=igoR)
 [![r-universe](https://dieghernan.r-universe.dev/badges/igoR)](https://dieghernan.r-universe.dev/)
-[![Rbuild-status](https://github.com/dieghernan/igoR/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/igoR/actions)
+[![R-CMD-check](https://github.com/dieghernan/igoR/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/igoR/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/igoR/branch/main/graph/badge.svg?token=UH3VLTTTRE)](https://app.codecov.io/gh/dieghernan/igoR)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/igor/badge)](https://www.codefactor.io/repository/github/dieghernan/igor)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.4442958-blue)](https://doi.org/10.5281/zenodo.4442958)
@@ -30,7 +30,7 @@ The dataset (V3) includes information of **534** IGO from 1816 to 2014,
 as well as membership information.
 
 **Source**: [Intergovernmental Organizations
-(v3)](https://correlatesofwar.org/data-sets/IGOs).
+(v3)](https://correlatesofwar.org/data-sets/IGOs/).
 
 Documentation and vignettes on <https://dieghernan.github.io/igoR/>
 
@@ -54,7 +54,7 @@ install_github("dieghernan/igoR")
 ```
 
 Alternatively, you can install `igoR` using the
-[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+[r-universe](https://dieghernan.r-universe.dev/igoR):
 
 ``` r
 # Enable this universe
@@ -134,15 +134,15 @@ EEC, members (1992)
 
 ## Recommended packages
 
--   `countrycode` for converting country names and codes across
-    different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc..)
--   `dplyr` for data manipulation.
+- `countrycode` for converting country names and codes across different
+  systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc..)
+- `dplyr` for data manipulation.
 
 ## Citation
 
 To cite ‘igoR’ in publications use:
 
-Hernangomez D (2022). igoR: Intergovernmental Organizations Database.
+Hernangomez D (2023). igoR: Intergovernmental Organizations Database.
 <https://doi.org/10.5281/zenodo.4442958>,
 <https://dieghernan.github.io/igoR/>
 
@@ -152,8 +152,8 @@ A BibTeX entry for LaTeX users:
       title = {{igoR}: Intergovernmental Organizations Database},
       doi = {10.5281/zenodo.4442958},
       author = {Diego Hernangómez},
-      year = {2022},
-      version = {0.1.4},
+      year = {2023},
+      version = {0.1.5},
       url = {https://dieghernan.github.io/igoR/},
       abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020). Version 3 includes information from 1815 to 2014.},
     }
@@ -165,7 +165,7 @@ A BibTeX entry for LaTeX users:
 <div id="ref-correlatesofwarproject2017" class="csl-entry">
 
 Correlates of War Project. 2017. “State System Membership List, V2016.”
-<https://correlatesofwar.org/data-sets/state-system-membership>.
+<https://correlatesofwar.org/data-sets/state-system-membership/>.
 
 </div>
 

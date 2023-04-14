@@ -11,7 +11,7 @@
 #'
 #' @source
 #' [Intergovernmental Organizations
-#' (v3)](https://correlatesofwar.org/data-sets/IGOs),
+#' (v3)](https://correlatesofwar.org/data-sets/IGOs/),
 #' The Correlates of War Project (IGO Data Stata Files).
 #'
 #' @details
@@ -30,7 +30,9 @@
 #' knitr::kable(t)
 #' ```
 #'
-#' @format data frame with 19335 rows. Relevant fields:
+#' @format data frame with
+#' `r prettyNum(nrow(igoR::igo_year_format3), big.mark=",")` rows.
+#' Relevant fields:
 #'   * **ioname**: Short abbreviation of the IGO name.
 #'   * **orgname**: Full IGO name.
 #'   * **year**: Calendar Year.
@@ -44,7 +46,7 @@
 #'   * **version**: COW version number.
 #'
 #' See
-#' [**Codebook Version 3 IGO Data**](https://correlatesofwar.org/data-sets/IGOs)
+#' [**Codebook Version 3 IGO Data**](https://correlatesofwar.org/data-sets/IGOs/)
 #' for full reference.
 #'
 #' @family datasets
@@ -56,6 +58,9 @@
 #' Jamison. "Tracking Organizations in the World: The Correlates of War
 #' IGO Version 3.0 Datasets." *Journal of Peace Research* 57, no. 3
 #' (May 2020): 492-503.
+#' @examples
+#' data("igo_year_format3")
+#' dplyr::tibble(igo_year_format3)
 NULL
 
 #' @title Country membership to IGO by year
@@ -70,7 +75,7 @@ NULL
 #'
 #' @source
 #' [Intergovernmental Organizations
-#' (v3)](https://correlatesofwar.org/data-sets/IGOs),
+#' (v3)](https://correlatesofwar.org/data-sets/IGOs/),
 #' The Correlates of War Project (IGO Data Stata Files)
 #'
 #' @details
@@ -88,7 +93,9 @@ NULL
 #'
 #'  knitr::kable(t)
 #' ```
-#' @format data frame with 15557 rows. Relevant fields:
+#' @format data frame with
+#' `r prettyNum(nrow(igoR::state_year_format3), big.mark=",")` rows.
+#' Relevant fields:
 #'   * **ccode**: COW country number, see [states2016].
 #'   * **year**: Calendar Year.
 #'   * **state**: Abbreviated state name, identical to variable names in
@@ -97,7 +104,7 @@ NULL
 #'     membership status. See Details.
 #'
 #' See
-#' [**Codebook Version 3 IGO Data**](https://correlatesofwar.org/data-sets/IGOs)
+#' [**Codebook Version 3 IGO Data**](https://correlatesofwar.org/data-sets/IGOs/)
 #'
 #' @seealso [countrycode::countrycode()] to convert between different country
 #' code schemes.
@@ -110,6 +117,11 @@ NULL
 #' Jamison. "Tracking Organizations in the World: The Correlates of War
 #' IGO Version 3.0 Datasets." *Journal of Peace Research* 57, no. 3
 #' (May 2020): 492-503.
+#'
+#' @examples
+#' data("state_year_format3")
+#' dplyr::tibble(state_year_format3)
+#'
 NULL
 
 
@@ -120,9 +132,11 @@ NULL
 #' the field `state` from [state_year_format3].
 #' @source
 #' [State System Membership
-#' (v2016)](https://correlatesofwar.org/data-sets/state-system-membership),
+#' (v2016)](https://correlatesofwar.org/data-sets/state-system-membership/),
 #' The Correlates of War Project.
-#' @format data frame with 243 rows:
+#' @format data frame with
+#' `r prettyNum(nrow(igoR::states2016), big.mark=",")` rows.
+#' Relevant fields:
 #' * **ccode**: COW country number.
 #' * **stateabb**: COW state abbreviation (3 characters).
 #' * **statenme**: COW state name.
@@ -160,4 +174,9 @@ NULL
 #' @references
 #' Correlates of War Project. 2017 "State System Membership List, v2016."
 #' Online, <https://correlatesofwar.org/>.
+#'
+#' @examples
+#' # example code
+#' data("states2016")
+#' dplyr::tibble(states2016)
 NULL

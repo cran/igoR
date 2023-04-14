@@ -1,6 +1,6 @@
 Package: igoR
 Title: Intergovernmental Organizations Database
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -21,13 +21,13 @@ Config/testthat/parallel: true
 Copyright: © 2000-2021 by the Correlates of War
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 X-schema.org-keywords: R, IGO, Correlates of War, Intergovernmental
         Organisations
 NeedsCompilation: no
-Packaged: 2022-08-13 12:09:14 UTC; diego
+Packaged: 2023-04-14 09:41:46 UTC; diego
 Author: Diego Hernangómez [aut, cre, cph]
     (<https://orcid.org/0000-0001-8457-4658>)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-08-13 12:20:05 UTC
+Date/Publication: 2023-04-14 09:50:06 UTC

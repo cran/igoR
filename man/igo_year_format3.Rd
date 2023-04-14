@@ -5,7 +5,9 @@
 \alias{igo_year_format3}
 \title{Intergovernmental Organizations (IGO) by year}
 \format{
-data frame with 19335 rows. Relevant fields:
+data frame with
+19,335 rows.
+Relevant fields:
 \itemize{
 \item \strong{ioname}: Short abbreviation of the IGO name.
 \item \strong{orgname}: Full IGO name.
@@ -21,11 +23,11 @@ names)
 }
 
 See
-\href{https://correlatesofwar.org/data-sets/IGOs}{\strong{Codebook Version 3 IGO Data}}
+\href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}}
 for full reference.
 }
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs}{Intergovernmental Organizations (v3)},
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Intergovernmental Organizations (v3)},
 The Correlates of War Project (IGO Data Stata Files).
 }
 \description{
@@ -46,6 +48,10 @@ Possible value of the status of that state in the IGO are:\tabular{lr}{
 }
 \note{
 Raw data used internally by \strong{igoR}.
+}
+\examples{
+data("igo_year_format3")
+dplyr::tibble(igo_year_format3)
 }
 \references{
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne Spencer

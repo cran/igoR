@@ -5,7 +5,9 @@
 \alias{state_year_format3}
 \title{Country membership to IGO by year}
 \format{
-data frame with 15557 rows. Relevant fields:
+data frame with
+15,557 rows.
+Relevant fields:
 \itemize{
 \item \strong{ccode}: COW country number, see \link{states2016}.
 \item \strong{year}: Calendar Year.
@@ -16,10 +18,10 @@ membership status. See Details.
 }
 
 See
-\href{https://correlatesofwar.org/data-sets/IGOs}{\strong{Codebook Version 3 IGO Data}}
+\href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}}
 }
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs}{Intergovernmental Organizations (v3)},
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Intergovernmental Organizations (v3)},
 The Correlates of War Project (IGO Data Stata Files)
 }
 \description{
@@ -40,6 +42,11 @@ Possible value of the status of that state in the IGO are:\tabular{lr}{
 }
 \note{
 Raw data used internally by \strong{igoR}.
+}
+\examples{
+data("state_year_format3")
+dplyr::tibble(state_year_format3)
+
 }
 \references{
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne Spencer
