@@ -1,43 +1,62 @@
 #' @title Search and Find an IGO
+#'
 #' @name igo_search
-#' @description Search any IGO by name or string pattern.
-#' @return A dataframe.
+#'
+#' @description
+#' Search any IGO by name or string pattern.
+#'
+#' @return
+#' A [`data.frame`][data.frame()].
+#'
 #' @seealso [igo_year_format3]
 #'
-#'
-#' @param pattern regex pattern. If `NULL` the function returns a dataset
-#' with all the IGOs on [igo_year_format3]. Integer values are
-#' accepted.
+#' @param pattern [regex][base::regex] pattern. If `NULL` the function returns
+#'   a dataset with all the IGOs on [igo_year_format3]. Integer values are
+#'   accepted.
 #' @param exact Logical. When `TRUE` only exact matches are returned.
-#' @details The information of each IGO is retrieved based on the last year
-#' available on [igo_year_format3].
 #'
-#' An additional column `label` is provided. This column is a clean
-#' version of `longorgname`
+#' @details
+#' The information of each IGO is retrieved based on the last year available on
+#' [igo_year_format3].
+#'
+#' An additional column `label` is provided. This column is a clean version of
+#' `longorgname`
+#'
 #' @examples
 #' # All values
+#' library(dplyr)
 #' all <- igo_search()
 #'
-#' nrow(all)
-#' colnames(all)
-#'
-#' dplyr::tibble(all)
+#' all %>% tibble()
 #'
 #' # Search by pattern
-#' igo_search("EU")[, 1:3]
+#' igo_search("EU") %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
 #'
-#' igo_search("EU", exact = TRUE)[, 1:3]
+#' igo_search("EU", exact = TRUE) %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
 #'
 #' # With integers
-#' igo_search(10)[, 1:3]
+#' igo_search(10) %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
 #'
-#' igo_search(10, exact = TRUE)[, 1:3]
+#' igo_search(10, exact = TRUE) %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
 #'
 #' # Several patterns (regex style)
-#' igo_search("NAFTA|UN|EU")[, 1:3]
+#' igo_search("NAFTA|UN|EU") %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
 #'
 #' # Several patterns Exact (regex style)
-#' igo_search("^NAFTA$|^UN$|^EU$")[, 1:3]
+#' igo_search("^NAFTA$|^UN$|^EU$") %>%
+#'   select(ionum:orgname) %>%
+#'   tibble()
+#'
 #' @export
 igo_search <- function(pattern = NULL, exact = FALSE) {
   db <- igoR::igo_year_format3
@@ -48,8 +67,7 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
 
   # Extract last date
   db_last <- db_clean[, c("ioname", "year")]
-  db_lastyear <-
-    aggregate(db_last, by = list(db_last$ioname), FUN = max)
+  db_lastyear <- aggregate(db_last, by = list(db_last$ioname), FUN = max)
   db_lastyear <- db_lastyear[, c("ioname", "year")]
 
   db_end <- merge(db_clean, db_lastyear)
@@ -62,15 +80,10 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
   db_end$label <- gsub("  ", " ", db_end$label)
 
   # Reorder col
-  cols <-
-    unique(c(
-      "ionum",
-      "ioname",
-      "orgname",
-      "longorgname",
-      "label",
-      colnames(db_end)
-    ))
+  cols <- unique(
+    c("ionum", "ioname", "orgname", "longorgname", "label", colnames(db_end))
+  )
+
   cols <- cols[cols != "year"]
   db_end <- db_end[, cols]
 
@@ -96,7 +109,8 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
     if (length(lon) > 0) {
       db_end <- db_end[lon, ]
     } else {
-      stop("Pattern '", pattern, "' do not match with any IGO")
+      warning("Pattern '", pattern, "' do not match with any IGO")
+      return(invisible(NULL))
     }
   }
   row.names(db_end) <- NULL

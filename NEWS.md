@@ -1,3 +1,12 @@
+# igoR 0.2.0
+
+-   Internal refactor of the code. The user shouldn't notice any visible change.
+-   `igo_dyadic()` accepts now a vector of countries also in the `country1`
+    parameter.
+-   New helper functions for converting numerical values to labels:
+    `igo_recode_igoyear()`, `igo_recode_stateyear()`, `igo_recode_dyadic()`.
+-   Update docs and basic package maintenance.
+
 # igoR 0.1.5
 
 -   Update docs and examples.

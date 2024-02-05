@@ -10,54 +10,51 @@ igo_members(ioname, year = NULL, status = "Full Membership")
 \item{ioname}{Any valid \code{ioname} of an IGO as specified on
 \link{igo_year_format3}. It could be also a vector of IGOs.}
 
-\item{year}{Year to be assessed, an integer or an array of year.
-If \code{NULL} the latest year available
-of the IGO would be extracted.}
+\item{year}{Year to be assessed, an integer or an array of year. If \code{NULL}
+the latest year available of the IGO would be extracted.}
 
-\item{status}{Character or vector with the membership status to be
-extracted. See Details
-on \link{state_year_format3}.}
+\item{status}{Character or vector with the membership status to be extracted.
+See \strong{Details} on \link{state_year_format3}.}
 }
 \value{
-A dataframe.
+A \code{\link[=data.frame]{data.frame}}.
 }
 \description{
-Extract all the countries belonging to an IGO on a specific
-date.
+Extract all the countries belonging to an IGO on a specific date.
 }
 \examples{
-# Composition on two different dates
-igo_members("EU", year = 1993)
-igo_members("EU")
-igo_members("NAFTA", year = c(1995:1998))
+library(dplyr)
+igo_members("EU", year = 1993) \%>\% as_tibble()
+igo_members("EU") \%>\% as_tibble()
+igo_members("NAFTA", year = c(1995:1998)) \%>\% as_tibble()
 
 # Extract different status
-igo_members("ACCT", status = c("Associate Membership", "Observer"))
+igo_members("ACCT", status = c("Associate Membership", "Observer")) \%>\%
+  as_tibble()
 
 # States no members of the UN
-igo_members("UN", status = "No Membership")
+igo_members("UN", status = "No Membership") \%>\%
+  as_tibble()
 
 # Vectorized
-
-igo_members(c("NAFTA", "EU"), year = 1993)
+igo_members(c("NAFTA", "EU"), year = 1993) \%>\%
+  as_tibble() \%>\%
+  arrange(state)
 
 # Use countrycodes package to get additional codes
 if (requireNamespace("countrycode", quietly = TRUE)) {
   library(countrycode)
   EU <- igo_members("EU")
-  EU$iso3c <- countrycode(EU$ccode,
-    origin = "cown",
-    destination = "iso3c"
-  )
+  EU$iso3c <- countrycode(EU$ccode, origin = "cown", destination = "iso3c")
+
   EU$continent <- countrycode(EU$ccode,
     origin = "cown",
     destination = "continent"
   )
 
-  head(EU)
+  tibble(EU)
 }
 }
 \seealso{
-\link{igo_year_format3},
-\code{\link[=igo_search]{igo_search()}}, \link{state_year_format3}.
+\link{igo_year_format3}, \code{\link[=igo_search]{igo_search()}}, \link{state_year_format3}.
 }

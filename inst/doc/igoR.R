@@ -20,17 +20,17 @@ library(ggplot2)
 library(dplyr)
 
 ## ----custom_theme-------------------------------------------------------------
-theme_igoR <- theme(
+theme_igor <- theme(
   axis.title = element_blank(),
   axis.line.x.bottom = element_line("black"),
   axis.line.y.left = element_line("black"),
   axis.text = element_text(color = "black", family = "sans"),
-  axis.text.y.left = element_text(angle = 90),
+  axis.text.y.left = element_text(angle = 90, hjust = 0.5),
   legend.position = "bottom",
   legend.title = element_blank(),
   legend.key = element_blank(),
   legend.key.width = unit(2, "cm"),
-  legend.text = element_text(family = "sans", size = 13),
+  legend.text = element_text(family = "sans", size = 11.5),
   legend.box.background = element_rect(color = "black", linewidth = 1),
   legend.spacing = unit(1.2 / 100, "npc"),
   plot.background = element_rect("grey90"),
@@ -53,21 +53,22 @@ countries_by_year <- state_year_format3 %>%
   summarise(value = n(), .groups = "keep") %>%
   mutate(variable = "Number of COW states")
 
-all_by_year <- rbind(igos_by_year, countries_by_year) %>%
-  mutate(variable = factor(variable))
+all_by_year <- igos_by_year %>%
+  bind_rows(countries_by_year) %>%
+  # For labelling the plot
+  mutate(variable = factor(variable,
+    levels = c("Total IGOs", "Number of COW states")
+  ))
 
-# Reverse values
-all_by_year$variable <- factor(all_by_year$variable,
-  levels = rev(levels(all_by_year$variable))
-)
 
 # Plot
 ggplot(all_by_year, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = variable)) +
+  scale_x_continuous(limits = c(1800, 2014)) +
   scale_linetype_manual(values = c("solid", "dashed")) +
   geom_vline(xintercept = c(1945, 1989)) +
   ylim(0, 400) +
-  theme_igoR
+  theme_igor
 
 ## ----Fig2, message=FALSE, warning=FALSE, fig.cap="Figure 2. Birth and death rates of IGOs, 1816-2014"----
 # Births and deads by year
@@ -87,35 +88,38 @@ deads <- df %>%
   mutate(variable = "IGO Deaths")
 
 
-births_and_deads <- rbind(births, deads) %>% filter(!is.na(year))
-
+births_and_deads <- births %>%
+  bind_rows(deads) %>%
+  filter(!is.na(year))
 
 # Plot
 ggplot(births_and_deads, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = variable)) +
   scale_linetype_manual(values = c("solid", "dashed")) +
+  scale_x_continuous(
+    limits = c(1815, 2015),
+    breaks = seq(1815, 2015, by = 25)
+  ) +
   ylim(0, 15) +
-  theme_igoR
+  theme_igor
 
 ## ----regions_code-------------------------------------------------------------
-# Extracted from analysis-jpr.do - See https://www.prio.org/JPR/Datasets/
-
 # crossreg and universal codes not included
 
-Asia <- c(
+asia <- c(
   550, 560, 570, 580, 590, 600, 610, 640, 650, 660,
   670, 725, 750, 825, 1030, 1345, 1400, 1530, 1532, 2300,
   2770, 3185, 3330, 3560, 3930, 4115, 4150, 4160, 4170,
   4190, 4200, 4220, 4265, 4440
 )
 
-MiddleEast <- c(
+middle_east <- c(
   370, 380, 390, 400, 410, 420, 430, 440, 450, 460,
   470, 490, 500, 510, 520, 1110, 1410, 1990, 2000,
   2220, 3450, 3800, 4140, 4270, 4380
 )
 
-Europe <- c(
+europe <- c(
   20, 300, 780, 800, 832, 840, 860, 1020, 1050, 1070, 1080,
   1125, 1140, 1390, 1420, 1440, 1563, 1565, 1580, 1585, 1590,
   1600, 1610, 1620, 1630, 1640, 1645, 1653, 1660, 1670, 1675,
@@ -128,7 +132,7 @@ Europe <- c(
   4520, 4540
 )
 
-Africa <- c(
+africa <- c(
   30, 40, 50, 60, 80, 90, 100, 110, 115, 120, 125, 130, 140,
   150, 155, 160, 170, 180, 190, 200, 210, 225, 240, 250, 260, 280,
   290, 690, 700, 710, 940, 1060, 1150, 1170, 1260, 1290, 1310,
@@ -140,7 +144,7 @@ Africa <- c(
   4490, 4500, 4501, 4503
 )
 
-Americas <- c(
+americas <- c(
   310, 320, 330, 340, 720, 760, 815, 875, 880, 890, 900,
   910, 912, 913, 920, 950, 970, 980, 990, 1000, 1010, 1095,
   1130, 1486, 1489, 1490, 1860, 1890, 1920, 1950, 2070, 2110,
@@ -151,154 +155,120 @@ Americas <- c(
   4260, 4280, 4370
 )
 
-regions <- igo_search()
-
-regions$region <- NA
-
-regions <- regions %>% select(region, ionum)
-
-regions$region <-
-  ifelse(regions$ionum %in% Africa, "Africa", regions$region)
-
-regions$region <-
-  ifelse(regions$ionum %in% Americas, "Americas", regions$region)
-
-regions$region <-
-  ifelse(regions$ionum %in% Asia, "Asia", regions$region)
-
-regions$region <-
-  ifelse(regions$ionum %in% Europe, "Europe", regions$region)
-
-regions$region <-
-  ifelse(regions$ionum %in% MiddleEast, "Middle East", regions$region)
+regions <- igo_search() %>%
+  mutate(region = case_when(
+    ionum %in% africa ~ "Africa",
+    ionum %in% americas ~ "Americas",
+    ionum %in% asia ~ "Asia",
+    ionum %in% europe ~ "Europe",
+    ionum %in% middle_east ~ "Middle East",
+    TRUE ~ NA
+  )) %>%
+  select(ioname, region)
 
 ## ----Fig3, message=FALSE, warning=FALSE, fig.cap="Figure 3. IGO counts across regions, 1816-2014"----
 # regions dataset created on previous chunk
 
 # All IGOs
-alligos <- igo_year_format3[, c("year", "ionum")]
+alligos <- igo_year_format3 %>%
+  select(ioname, year)
 
-regionsum <- merge(alligos, regions) %>%
+regionsum <- alligos %>%
+  left_join(regions) %>%
   group_by(year, region) %>%
   summarise(value = n(), .groups = "keep") %>%
-  filter(!is.na(region))
+  filter(!is.na(region)) %>%
+  # For plotting
+  mutate(region = factor(region,
+    levels = c(
+      "Asia", "Europe", "Africa", "Americas",
+      "Middle East"
+    )
+  ))
 
-# Order
-regionsum$region <- factor(regionsum$region,
-  levels = c(
-    "Asia", "Europe",
-    "Africa", "Americas",
-    "Middle East"
-  )
-)
 
 # Plot
 ggplot(regionsum, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = region)) +
-  scale_linetype_manual(values = c(
-    "solid", "dashed",
-    "dotted", "dotdash", "longdash"
-  )) +
+  scale_linetype_manual(
+    values = c("solid", "dashed", "dotted", "dotdash", "longdash")
+  ) +
   guides(linetype = guide_legend(ncol = 2, byrow = TRUE)) +
   ylim(0, 80) +
-  theme_igoR
+  scale_x_continuous(
+    limits = c(1815, 2015),
+    breaks = seq(1815, 2015, by = 25)
+  ) +
+  theme_igor
 
 ## ----Fig4, message=FALSE, warning=FALSE, fig.cap="Figure 4. IGO membership: five states in Asia, 1865-2014"----
-asia5_cntries <- c(
-  "China", "India",
-  "Pakistan", "Indonesia",
-  "Bangladesh"
-)
+asia5_cntries <- c("China", "India", "Pakistan", "Indonesia", "Bangladesh")
 
 # Five countries of Asia
 asia5_igos <- igo_state_membership(
-  state = asia5_cntries,
-  year = 1865:2014,
-  status = c("Full Membership")
+  state = asia5_cntries, year = 1865:2014,
+  status = "Full Membership"
 )
 
 asia5 <- asia5_igos %>%
   group_by(statenme, year) %>%
-  summarise(values = n(), .groups = "keep")
-
-
-# Reorder
-asia5$statenme <- factor(asia5$statenme,
-  levels = asia5_cntries
-)
-
-
+  summarise(values = n(), .groups = "keep") %>%
+  mutate(statenme = factor(statenme, levels = asia5_cntries))
 
 # Plot
 ggplot(asia5, aes(x = year, y = values)) +
   geom_line(color = "black", aes(linetype = statenme)) +
-  scale_linetype_manual(values = c(
-    "solid", "dashed",
-    "dotted", "dotdash",
-    "longdash"
-  )) +
+  scale_linetype_manual(
+    values = c("solid", "dashed", "dotted", "dotdash", "longdash")
+  ) +
   guides(linetype = guide_legend(ncol = 3, byrow = TRUE)) +
   theme(axis.title.y.left = element_text(
-    family = "sans",
-    size = 12,
+    family = "sans", size = 12,
     margin = margin(r = 6)
   )) +
-  scale_y_continuous(
-    "Number of memberships",
-    breaks = c(0, 20, 40, 60, 80, 100),
-    limits = c(0, 95),
-    labels = as.character(c(0, 20, 40, 60, 80, 100))
+  scale_x_continuous(
+    limits = c(1865, 2015),
+    breaks = seq(1865, 2015, by = 25)
   ) +
-  theme_igoR
+  scale_y_continuous("Number of memberships",
+    breaks = seq(0, 100, 20),
+    limits = c(0, 100)
+  ) +
+  theme_igor
 
 ## ----Fig5, message=FALSE, warning=FALSE, fig.cap="Figure 5. Number of IGOs with full shared memberships with Spain (selected countries), 1816-2014"----
-selected_countries <- c(
-  "France",
-  "Morocco",
-  "China",
-  "USA"
-)
+selected_countries <- c("France", "Morocco", "China", "USA")
 
-Spain_Selected <- igo_dyadic("Spain", selected_countries)
+spain_selected <- igo_dyadic("Spain", selected_countries)
 
 # Compute number of shared memberships
-
-Spain_Selected$values <- rowSums(Spain_Selected == 1)
+spain_selected <- spain_selected %>%
+  rowwise() %>%
+  mutate(values = sum(c_across(aaaid:wassen) == 1))
 
 # Plot
-ggplot(Spain_Selected, aes(x = year, y = values)) +
+ggplot(spain_selected, aes(x = year, y = values)) +
   geom_line(color = "black", aes(linetype = statenme2)) +
-  scale_linetype_manual(values = c(
-    "solid", "dashed",
-    "dotted", "dotdash"
-  )) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +
   guides(linetype = guide_legend(ncol = 2, byrow = TRUE)) +
   theme(axis.title.y.left = element_text(
-    family = "sans",
-    size = 10,
+    family = "sans", size = 10,
     margin = margin(r = 6)
   )) +
-  scale_y_continuous(
-    "Shared memberships w\ Spain",
-    breaks = c(0, 20, 40, 60, 80, 100),
-    limits = c(0, 110),
-    labels = as.character(c(0, 20, 40, 60, 80, 100))
+  scale_x_continuous(
+    limits = c(1815, 2015),
+    breaks = seq(1815, 2015, by = 25)
   ) +
-  theme_igoR +
+  scale_y_continuous("Number of memberships",
+    breaks = seq(0, 110, 20),
+    limits = c(0, 110)
+  ) +
+  theme_igor +
   geom_vline(xintercept = 1939, alpha = 0.2) +
-  annotate(
-    "label",
-    x = 1938,
-    y = 60,
-    size = 3,
-    label = "Spanish \nCivil War"
-  ) +
+  annotate("label", x = 1938, y = 60, size = 3, label = "Spanish \nCivil War") +
   geom_vline(xintercept = 1978, alpha = 0.2) +
-  annotate(
-    "label",
-    x = 1970,
-    y = 100,
-    size = 3,
-    label = "Constitution\nof Spain"
+  annotate("label",
+    x = 1970, y = 100, size = 3,
+    label = "Constitution \nof Spain"
   )
 

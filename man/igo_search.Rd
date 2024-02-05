@@ -7,49 +7,60 @@
 igo_search(pattern = NULL, exact = FALSE)
 }
 \arguments{
-\item{pattern}{regex pattern. If \code{NULL} the function returns a dataset
-with all the IGOs on \link{igo_year_format3}. Integer values are
+\item{pattern}{\link[base:regex]{regex} pattern. If \code{NULL} the function returns
+a dataset with all the IGOs on \link{igo_year_format3}. Integer values are
 accepted.}
 
 \item{exact}{Logical. When \code{TRUE} only exact matches are returned.}
 }
 \value{
-A dataframe.
+A \code{\link[=data.frame]{data.frame}}.
 }
 \description{
 Search any IGO by name or string pattern.
 }
 \details{
-The information of each IGO is retrieved based on the last year
-available on \link{igo_year_format3}.
+The information of each IGO is retrieved based on the last year available on
+\link{igo_year_format3}.
 
-An additional column \code{label} is provided. This column is a clean
-version of \code{longorgname}
+An additional column \code{label} is provided. This column is a clean version of
+\code{longorgname}
 }
 \examples{
 # All values
+library(dplyr)
 all <- igo_search()
 
-nrow(all)
-colnames(all)
-
-dplyr::tibble(all)
+all \%>\% tibble()
 
 # Search by pattern
-igo_search("EU")[, 1:3]
+igo_search("EU") \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
 
-igo_search("EU", exact = TRUE)[, 1:3]
+igo_search("EU", exact = TRUE) \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
 
 # With integers
-igo_search(10)[, 1:3]
+igo_search(10) \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
 
-igo_search(10, exact = TRUE)[, 1:3]
+igo_search(10, exact = TRUE) \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
 
 # Several patterns (regex style)
-igo_search("NAFTA|UN|EU")[, 1:3]
+igo_search("NAFTA|UN|EU") \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
 
 # Several patterns Exact (regex style)
-igo_search("^NAFTA$|^UN$|^EU$")[, 1:3]
+igo_search("^NAFTA$|^UN$|^EU$") \%>\%
+  select(ionum:orgname) \%>\%
+  tibble()
+
 }
 \seealso{
 \link{igo_year_format3}
