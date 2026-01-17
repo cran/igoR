@@ -22,12 +22,12 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 <!-- badges: end -->
 
-The goal of **igoR** is to provide access and to extract information
+The goal of **igoR** is to provide access to and extract information
 from the Intergovernmental Organizations Database (IGOs), version 3,
 provided by the Correlates of War Project ([Pevehouse et al.
 2020](#ref-pevehouse2020)).
 
-The dataset (V3) includes information of **534** IGOs from 1816 to 2014,
+The dataset (V3) includes information on **534** IGOs from 1816 to 2014,
 as well as membership information.
 
 - Source: [Intergovernmental Organizations
@@ -35,7 +35,7 @@ as well as membership information.
 - Documentation and vignettes on <https://dieghernan.github.io/igoR/>
 
 Additionally, a distribution of the State System Membership ([Correlates
-of War Project 2017](#ref-correlatesofwarproject2017)) is included on
+of War Project 2017](#ref-correlatesofwarproject2017)) is included in
 this package.
 
 ## Installation
@@ -69,7 +69,7 @@ install.packages("igoR", repos = c(
 
 ### Search an IGO by name:
 
-Search all IGOs related with “sugar”:
+Search all IGOs related to “sugar”:
 
 ``` r
 library(igoR)
@@ -133,13 +133,14 @@ EEC, members (1992)
 ## Recommended packages
 
 - **countrycode** for converting country names and codes across
-  different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc..)
+  different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc.)
 - **dplyr** for data manipulation.
 
 ## Citation
 
 <p>
-Hernangómez D (2024). <em>igoR: Intergovernmental Organizations
+
+Hernangómez D (2026). <em>igoR: Intergovernmental Organizations
 Database</em>.
 <a href="https://doi.org/10.32614/CRAN.package.igoR">doi:10.32614/CRAN.package.igoR</a>,
 <a href="https://dieghernan.github.io/igoR/">https://dieghernan.github.io/igoR/</a>.
@@ -151,10 +152,10 @@ A BibTeX entry for LaTeX users:
       title = {{igoR}: Intergovernmental Organizations Database},
       doi = {10.32614/CRAN.package.igoR},
       author = {Diego Hernangómez},
-      year = {2024},
-      version = {0.2.1},
+      year = {2026},
+      version = {1.0.0},
       url = {https://dieghernan.github.io/igoR/},
-      abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020). Version 3 includes information from 1815 to 2014.},
+      abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database (v3), provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020) <doi:10.1177/0022343319881175>.},
     }
 
 ## References

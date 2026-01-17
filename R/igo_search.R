@@ -5,8 +5,8 @@
 #' @description
 #' Search any IGO by name or string pattern.
 #'
-#' @return
-#' A [`data.frame`][data.frame()].
+#' @inherit igo_members source references return
+#' @encoding UTF-8
 #'
 #' @seealso [igo_year_format3]
 #'
@@ -77,7 +77,7 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
 
   db_end$label <- gsub("\\((.*?)\\)", "", db_end$label)
   db_end$label <- gsub("\\((.*?)$", "", db_end$label)
-  db_end$label <- gsub("  ", " ", db_end$label)
+  db_end$label <- gsub("  ", " ", db_end$label, fixed = TRUE)
 
   # Reorder col
   cols <- unique(
@@ -114,5 +114,5 @@ igo_search <- function(pattern = NULL, exact = FALSE) {
     }
   }
   row.names(db_end) <- NULL
-  return(db_end)
+  db_end
 }

@@ -3,7 +3,6 @@ CMD
 CoW
 CodeFactor
 Codebook
-DOI
 Eurostat
 GEC
 GLACSEC
@@ -18,7 +17,6 @@ McManus
 Nordstrom
 ORCID
 Pevehouse
-Pre
 Roseanne
 Stata
 SugU
@@ -34,6 +32,7 @@ countrycode
 d'affaires
 deaddate
 denmark
+doi
 dplyr
 dyad
 endday
@@ -45,7 +44,6 @@ germany
 ggplot
 giscoR
 greece
-igo
 igocode
 ioname
 ionum
@@ -58,8 +56,6 @@ membershipdates
 netherlands
 orgname
 portugal
-recode
-recoded
 sdate
 sourcesandnotes
 spain

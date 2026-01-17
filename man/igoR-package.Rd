@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Tools to extract information from the Intergovernmental Organizations ('IGO') Database , version 3, provided by the Correlates of War Project \url{https://correlatesofwar.org/}. See also Pevehouse, J. C. et al. (2020). Version 3 includes information from 1815 to 2014.
+Tools to extract information from the Intergovernmental Organizations ('IGO') Database (v3), provided by the Correlates of War Project \url{https://correlatesofwar.org/}. See also Pevehouse, J. C. et al. (2020) \doi{10.1177/0022343319881175}.
 }
 \seealso{
 Useful links:
@@ -21,6 +21,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [copyright holder]
+
+Other contributors:
+\itemize{
+  \item The Correlates of War Project (for the data) [copyright holder]
+}
 
 }
 \keyword{internal}

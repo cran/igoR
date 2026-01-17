@@ -71,7 +71,7 @@ ggplot(all_by_year, aes(x = year, y = value)) +
   theme_igor
 
 ## ----Fig2, message=FALSE, warning=FALSE, fig.cap="Figure 2. Birth and death rates of IGOs, 1816-2014"----
-# Births and deads by year
+# Births and deaths by year
 
 df <- igo_search()
 

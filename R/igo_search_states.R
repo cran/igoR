@@ -3,14 +3,15 @@
 #' @name igo_search_states
 #'
 #' @description
-#' Extract all the memberships of a state on a specific date.
-#'
-#' @return A [`data.frame`][data.frame()].
+#' Find codes and names of a state.
 #'
 #' @seealso [states2016()].
 #'
+#' @inherit igo_members source references return
+#' @encoding UTF-8
+#'
 #' @param state Any valid name or code of a state as specified on
-#'   [states2016()]. It could be also an array of states.
+#'   [states2016()]. It can be also an array of states.
 #'
 #' @examples
 #' library(dplyr)
@@ -52,14 +53,13 @@ igo_search_states <- function(state) {
     df_states
   })
 
-
   # Check results
   has_results <- vapply(find_v, is.null, logical(1))
 
   # Clean
   clean <- find_v[!has_results]
   if (length(clean) < 1) {
-    warning("No states found with required parameters")
+    warning("No states found with required arguments")
     return(invisible(NULL))
   }
 
