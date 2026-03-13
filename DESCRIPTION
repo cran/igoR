@@ -1,6 +1,6 @@
 Package: igoR
 Title: Intergovernmental Organizations Database
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
@@ -16,11 +16,11 @@ URL: https://dieghernan.github.io/igoR/,
         https://github.com/dieghernan/igoR
 BugReports: https://github.com/dieghernan/igoR/issues
 Depends: R (>= 3.6.0)
-Suggests: countrycode (>= 1.1.0), dplyr (>= 1.0.2), ggplot2, knitr,
-        rmarkdown, testthat (>= 3.0.0)
-VignetteBuilder: knitr
+Suggests: countrycode (>= 1.1.0), dplyr (>= 1.0.2), ggplot2, quarto,
+        testthat (>= 3.0.0)
+VignetteBuilder: quarto
 Config/Needs/website: dieghernan/gitdevr, reactable, giscoR, devtools,
-        remotes, cpp11
+        remotes, cpp11, sessioninfo
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: © 2000-2021 by the Correlates of War. See file COPYRIGHTS.
@@ -31,10 +31,10 @@ X-schema.org-keywords: r, igo, correlates-of-war,
         intergovernmental-organisations, cran,
         intergovernmental-organizations, r-package, rstats, cran-r
 NeedsCompilation: no
-Packaged: 2026-01-17 19:38:40 UTC; diego
+Packaged: 2026-03-12 21:39:04 UTC; diego
 Author: Diego Hernangómez [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0001-8457-4658>),
   The Correlates of War Project [cph] (for the data)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-01-17 19:50:02 UTC
+Date/Publication: 2026-03-13 06:50:02 UTC

@@ -1,5 +1,6 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # igoR <a href='https://dieghernan.github.io/igoR/'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
@@ -12,7 +13,6 @@ results](https://badges.cranchecks.info/worst/igoR.svg)](https://cran.r-project.
 [![CRAN-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/igoR)](https://cran.r-project.org/package=igoR)
 [![r-universe](https://dieghernan.r-universe.dev/badges/igoR)](https://dieghernan.r-universe.dev/)
 [![R-CMD-check](https://github.com/dieghernan/igoR/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/igoR/actions/workflows/check-full.yaml)
-[![R-hub](https://github.com/dieghernan/igoR/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/igoR/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/igoR/branch/main/graph/badge.svg?token=UH3VLTTTRE)](https://app.codecov.io/gh/dieghernan/igoR)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/igor/badge)](https://www.codefactor.io/repository/github/dieghernan/igor)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.igoR-blue)](https://doi.org/10.32614/CRAN.package.igoR)
@@ -40,6 +40,8 @@ this package.
 
 ## Installation
 
+<div class="pkgdown-release">
+
 Install **igoR** from
 [**CRAN**](https://CRAN.R-project.org/package=igoR):
 
@@ -47,23 +49,34 @@ Install **igoR** from
 install.packages("igoR")
 ```
 
+</div>
+
+<div class="pkgdown-devel">
+
+Check the docs of the developing version
+in <https://dieghernan.github.io/igoR/dev/>.
+
 You can install the developing version from GitHub:
 
 ``` r
-library(remotes)
-install_github("dieghernan/igoR")
+pak::pak("dieghernan/igoR")
 ```
 
 Alternatively, you can install **igoR** using the
 [r-universe](https://dieghernan.r-universe.dev/igoR):
 
 ``` r
-# Install igoR in R:
-install.packages("igoR", repos = c(
-  "https://dieghernan.r-universe.dev",
-  "https://cloud.r-project.org"
-))
+# Install igoR in R
+install.packages(
+  "igoR",
+  repos = c(
+    "https://dieghernan.r-universe.dev",
+    "https://cloud.r-project.org"
+  )
+)
 ```
+
+</div>
 
 ## Basic usage
 
@@ -83,6 +96,11 @@ result_sugar <- igo_search("Sugar")
 | 1920 | GLACSEC | Group of L/A & Carib. Sugar Exp. Countries | Group of Latin American and Caribbean Sugar Exporting Countries | Group of Latin American and Caribbean Sugar Exporting Countries | 1974 | 2001 | 1 | 0 | 0 | NA | 2.3 | Not applicable - created 1965 or later |  | 0 | 1 | 0 | 0 |
 | 3130 | ISuC | Intl Sugar Council | International Sugar Council | International Sugar Council | 1937 | 1967 | 1 | 0 | 0 | 91 | 3.0 | Within 5 years |  | 0 | 0 | 1 | 0 |
 | 4290 | SugU | Sugar Union | Sugar Union | Sugar Union | 1902 | 1913 | 1 | 0 | 0 | 29 | 3.0 | Completely accurate, except a few minor uncertainties |  | 0 | 0 | 0 | 1 |
+
+<p class="caption">
+
+Table 1: IGOs related with sugar
+</p>
 
 ### IGO members:
 
@@ -106,7 +124,10 @@ eec_init <- igo_members(eec_code$ioname, year = eec_code$sdate)
 | EEC | 260 | wgermany | German Federal Republic | 1958 | 1 | Full Membership | European Economic Community |
 | EEC | 325 | italy | Italy | 1958 | 1 | Full Membership | European Economic Community |
 
-EEC, members (1958)
+<p class="caption">
+
+Table 2: EEC, members (1958)
+</p>
 
 ``` r
 # Latest date
@@ -128,7 +149,10 @@ eec_end <- igo_members(eec_code$ioname)
 | EEC | 350 | greece | Greece | 1992 | 1 | Full Membership | European Economic Community |
 | EEC | 390 | denmark | Denmark | 1992 | 1 | Full Membership | European Economic Community |
 
-EEC, members (1992)
+<p class="caption">
+
+Table 3: EEC, members (1992)
+</p>
 
 ## Recommended packages
 
@@ -153,7 +177,7 @@ A BibTeX entry for LaTeX users:
       doi = {10.32614/CRAN.package.igoR},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.0},
+      version = {1.0.1},
       url = {https://dieghernan.github.io/igoR/},
       abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database (v3), provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020) <doi:10.1177/0022343319881175>.},
     }
@@ -174,8 +198,9 @@ Correlates of War Project. 2017. “State System Membership List, V2016.”
 
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne
 Spencer Jamison. 2020. “Tracking Organizations in the World: The
-Correlates of War IGO Version 3.0 Datasets.” *Journal of Peace Research*
-57 (3): 492–503. <https://doi.org/10.1177/0022343319881175>.
+<span class="nocase">Correlates of War IGO</span> Version 3.0 Datasets.”
+*Journal of Peace Research* 57 (3): 492–503.
+<https://doi.org/10.1177/0022343319881175>.
 
 </div>
 
