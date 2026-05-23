@@ -2,7 +2,7 @@
 #| label: setup
 library(igoR)
 
-# Additional libraries
+# Load helper packages.
 library(ggplot2)
 library(dplyr)
 
@@ -35,7 +35,7 @@ theme_igor <- theme(
 ## -----------------------------------------------------------------------------
 #| label: fig-f1
 #| fig-cap: "IGOs and states in the world system, 1816-2014"
-# Summarize
+# Summarize values by year.
 igos_by_year <- igo_year_format3 %>%
   group_by(year) %>%
   summarise(value = n(), .groups = "keep") %>%
@@ -48,7 +48,7 @@ countries_by_year <- state_year_format3 %>%
 
 all_by_year <- igos_by_year %>%
   bind_rows(countries_by_year) %>%
-  # For labelling the plot
+  # Label the plot.
   mutate(
     variable = factor(
       variable,
@@ -56,8 +56,7 @@ all_by_year <- igos_by_year %>%
     )
   )
 
-
-# Plot
+# Plot the results.
 ggplot(all_by_year, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = variable)) +
   scale_x_continuous(limits = c(1800, 2014)) +
@@ -70,7 +69,7 @@ ggplot(all_by_year, aes(x = year, y = value)) +
 ## -----------------------------------------------------------------------------
 #| label: fig-f2
 #| fig-cap: "Birth and death rates of IGOs, 1816-2014"
-# Births and deaths by year
+# Summarize births and deaths by year.
 
 df <- igo_search()
 
@@ -86,12 +85,11 @@ deads <- df %>%
   summarise(value = n(), .groups = "keep") %>%
   mutate(variable = "IGO Deaths")
 
-
 births_and_deads <- births %>%
   bind_rows(deads) %>%
   filter(!is.na(year))
 
-# Plot
+# Plot the results.
 ggplot(births_and_deads, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = variable)) +
   scale_linetype_manual(values = c("solid", "dashed")) +
@@ -108,7 +106,7 @@ ggplot(births_and_deads, aes(x = year, y = value)) +
 #| code-fold: true
 #| code-summary: "IGOs across regions: codes"
 
-# crossreg and universal codes not included
+# Cross-regional and universal codes are not included.
 
 asia <- c(
   550,
@@ -446,8 +444,8 @@ americas <- c(
 ## -----------------------------------------------------------------------------
 #| label: regions_code
 
-# africa, americas, asia, europe, middle_east created in previous chunk
-# collapsed for readability.
+# `africa`, `americas`, `asia`, `europe` and `middle_east` were created in the
+# previous chunk, which is collapsed for readability.
 
 regions <- igo_search() %>%
   mutate(
@@ -466,9 +464,9 @@ regions <- igo_search() %>%
 ## -----------------------------------------------------------------------------
 #| label: fig-f3
 #| fig-cap: IGO counts across regions, 1816-2014
-# regions dataset created on previous chunk
+# The `regions` data set was created in the previous chunk.
 
-# All IGOs
+# Select all IGOs.
 alligos <- igo_year_format3 %>%
   select(ioname, year)
 
@@ -477,7 +475,7 @@ regionsum <- alligos %>%
   group_by(year, region) %>%
   summarise(value = n(), .groups = "keep") %>%
   filter(!is.na(region)) %>%
-  # For plotting
+  # Prepare for plotting.
   mutate(
     region = factor(
       region,
@@ -491,8 +489,7 @@ regionsum <- alligos %>%
     )
   )
 
-
-# Plot
+# Plot the results.
 ggplot(regionsum, aes(x = year, y = value)) +
   geom_line(color = "black", aes(linetype = region)) +
   scale_linetype_manual(
@@ -512,7 +509,7 @@ ggplot(regionsum, aes(x = year, y = value)) +
 #| fig-cap: "IGO membership: five states in Asia, 1865-2014"
 asia5_cntries <- c("China", "India", "Pakistan", "Indonesia", "Bangladesh")
 
-# Five countries of Asia
+# Use five countries in Asia.
 asia5_igos <- igo_state_membership(
   state = asia5_cntries,
   year = 1865:2014,
@@ -524,7 +521,7 @@ asia5 <- asia5_igos %>%
   summarise(values = n(), .groups = "keep") %>%
   mutate(statenme = factor(statenme, levels = asia5_cntries))
 
-# Plot
+# Plot the results.
 ggplot(asia5, aes(x = year, y = values)) +
   geom_line(color = "black", aes(linetype = statenme)) +
   scale_linetype_manual(
@@ -558,12 +555,12 @@ selected_countries <- c("France", "Morocco", "China", "USA")
 
 spain_selected <- igo_dyadic("Spain", selected_countries)
 
-# Compute number of shared memberships
+# Compute the number of shared memberships.
 spain_selected <- spain_selected %>%
   rowwise() %>%
   mutate(values = sum(c_across(aaaid:wassen) == 1))
 
-# Plot
+# Plot the results.
 ggplot(spain_selected, aes(x = year, y = values)) +
   geom_line(color = "black", aes(linetype = statenme2)) +
   scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +

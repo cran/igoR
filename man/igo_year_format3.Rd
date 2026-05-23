@@ -4,22 +4,22 @@
 \encoding{UTF-8}
 \name{igo_year_format3}
 \alias{igo_year_format3}
-\title{Intergovernmental Organizations (IGO) by year}
+\title{Intergovernmental organizations by year}
 \format{
-\code{\link[=data.frame]{data.frame}} with
+\code{\link{data.frame}} with
 19,335 rows. Relevant
 fields:
 \itemize{
 \item \strong{ioname}: Short abbreviation of the IGO name.
 \item \strong{orgname}: Full IGO name.
-\item \strong{year}: Calendar Year.
-\item \strong{afghanistan...zimbabwe}: status of that state in the IGO. See
+\item \strong{year}: Calendar year.
+\item \strong{afghanistan...zimbabwe}: Status of that state in the IGO. See
 \strong{Details}.
-\item \strong{sdate}: start date (year) that the IGO started.
-\item \strong{deaddate}: dead date (year) that the IGO ceased to exist.
-\item \strong{longorgname}: a longer version of the IGOs name (including previous
-names)
-\item \strong{ionum}: IGO id number in v2.1 and v3.0 of the data.
+\item \strong{sdate}: Start year for the IGO.
+\item \strong{deaddate}: End year for the IGO.
+\item \strong{longorgname}: Longer version of the IGO name, including previous
+names.
+\item \strong{ionum}: IGO ID number in v2.1 and v3.0 of the data.
 \item \strong{version}: COW version number.
 }
 
@@ -30,12 +30,12 @@ See \href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 
 Project (IGO Data Stata Files).
 }
 \description{
-Data on IGOs from 1815-2014, at the IGO-year level. Contains one record per
-IGO-year (with years listed at 5 year intervals through 1965, and annually
-thereafter).
+Data on IGOs from 1815 to 2014 at the IGO-year level. Contains one record
+per IGO-year, with years listed at five-year intervals through 1965 and
+annually thereafter.
 }
 \details{
-Possible values of the status of that state in the IGO are:\tabular{lr}{
+Possible values for the status of a state in the IGO are:\tabular{lr}{
    \strong{Category} \tab \strong{Numerical Value} \cr
    No Membership \tab 0 \cr
    Full Membership \tab 1 \cr
@@ -46,8 +46,8 @@ Possible values of the status of that state in the IGO are:\tabular{lr}{
 }
 
 
-See \code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}} section for an easy way to recode the numerical
-values into \link[base:factor]{factors}.
+See the \code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}} section for an easy way to recode the
+numerical values into \link[base:factor]{factors}.
 }
 \note{
 Raw data used internally by \CRANpkg{igoR}.
@@ -55,7 +55,7 @@ Raw data used internally by \CRANpkg{igoR}.
 \examples{
 data("state_year_format3")
 
-# Show a glimpse
+# Show a glimpse.
 library(dplyr)
 
 state_year_format3 \%>\%
@@ -63,7 +63,7 @@ state_year_format3 \%>\%
   filter(year > 1990) \%>\%
   glimpse()
 
-# Recode numerical to factors: with a sample
+# Recode numerical values to factors with a sample.
 sample_state_year <- state_year_format3 \%>\%
   as_tibble() \%>\%
   select(ccode:afgec) \%>\%
@@ -71,7 +71,7 @@ sample_state_year <- state_year_format3 \%>\%
 
 sample_state_year \%>\% glimpse()
 
-# Recode
+# Recode.
 sample_state_year_recoded <- sample_state_year \%>\%
   mutate(across(-c(ccode:state), igo_recode_stateyear))
 
@@ -80,12 +80,12 @@ sample_state_year_recoded \%>\% glimpse()
 \references{
 Pevehouse, J. C., Nordstrom, T., McManus, R. W., & Jamison, A. S. (2020).
 Tracking organizations in the world: The Correlates of War IGO Version 3.0
-datasets. \emph{Journal of Peace Research, 57}(3), 492–503.
+data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \doi{10.1177/0022343319881175}.
 }
 \seealso{
-Other datasets: 
-\code{\link{igo_recode_igoyear}()},
+Other datasets:
+\code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}},
 \code{\link{state_year_format3}},
 \code{\link{states2016}}
 }

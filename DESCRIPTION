@@ -1,16 +1,16 @@
 Package: igoR
-Title: Intergovernmental Organizations Database
-Version: 1.0.1
+Title: Access the Intergovernmental Organizations Database
+Version: 1.0.2
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
     person("The Correlates of War Project", role = "cph",
            comment = "for the data")
   )
-Description: Tools to extract information from the Intergovernmental
-    Organizations ('IGO') Database (v3), provided by the Correlates of War
-    Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et
-    al. (2020) <doi:10.1177/0022343319881175>.
+Description: Tools for searching, extracting and recoding information from
+    the Intergovernmental Organizations ('IGO') Database (v3), distributed
+    by the Correlates of War Project <https://correlatesofwar.org/>. See
+    also Pevehouse, J. C. et al. (2020) <doi:10.1177/0022343319881175>.
 License: GPL (>= 3)
 URL: https://dieghernan.github.io/igoR/,
         https://github.com/dieghernan/igoR
@@ -21,20 +21,21 @@ Suggests: countrycode (>= 1.1.0), dplyr (>= 1.0.2), ggplot2, quarto,
 VignetteBuilder: quarto
 Config/Needs/website: dieghernan/gitdevr, reactable, giscoR, devtools,
         remotes, cpp11, sessioninfo
+Config/roxygen2/markdown: TRUE
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: © 2000-2021 by the Correlates of War. See file COPYRIGHTS.
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.3
 X-schema.org-keywords: r, igo, correlates-of-war,
         intergovernmental-organisations, cran,
         intergovernmental-organizations, r-package, rstats, cran-r
 NeedsCompilation: no
-Packaged: 2026-03-12 21:39:04 UTC; diego
+Packaged: 2026-05-23 10:41:56 UTC; diego
 Author: Diego Hernangómez [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0001-8457-4658>),
   The Correlates of War Project [cph] (for the data)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-03-13 06:50:02 UTC
+Date/Publication: 2026-05-23 11:00:14 UTC

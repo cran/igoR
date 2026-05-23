@@ -22,21 +22,20 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 <!-- badges: end -->
 
-The goal of **igoR** is to provide access to and extract information
-from the Intergovernmental Organizations Database (IGOs), version 3,
-provided by the Correlates of War Project ([Pevehouse et al.
+**igoR** provides access to the Intergovernmental Organizations Database
+(v3) from the Correlates of War Project ([Pevehouse et al.
 2020](#ref-pevehouse2020)).
 
-The dataset (V3) includes information on **534** IGOs from 1816 to 2014,
-as well as membership information.
+The data set (v3) includes information on **534** IGOs from 1816 to
+2014, plus membership information.
 
 - Source: [Intergovernmental Organizations
   (v3)](https://correlatesofwar.org/data-sets/IGOs/).
-- Documentation and vignettes on <https://dieghernan.github.io/igoR/>
+- Documentation and vignettes at <https://dieghernan.github.io/igoR/>.
 
-Additionally, a distribution of the State System Membership ([Correlates
-of War Project 2017](#ref-correlatesofwarproject2017)) is included in
-this package.
+The package also includes a distribution of the State System Membership
+data ([Correlates of War Project
+2017](#ref-correlatesofwarproject2017)).
 
 ## Installation
 
@@ -53,20 +52,20 @@ install.packages("igoR")
 
 <div class="pkgdown-devel">
 
-Check the docs of the developing version
-in <https://dieghernan.github.io/igoR/dev/>.
+Check the documentation for the development version at
+<https://dieghernan.github.io/igoR/dev/>.
 
-You can install the developing version from GitHub:
+You can install the development version from GitHub:
 
 ``` r
 pak::pak("dieghernan/igoR")
 ```
 
-Alternatively, you can install **igoR** using the
+Alternatively, you can install **igoR** using
 [r-universe](https://dieghernan.r-universe.dev/igoR):
 
 ``` r
-# Install igoR in R
+# Install igoR in R.
 install.packages(
   "igoR",
   repos = c(
@@ -80,9 +79,9 @@ install.packages(
 
 ## Basic usage
 
-### Search an IGO by name:
+### Search an IGO by name
 
-Search all IGOs related to “sugar”:
+Search for all IGOs related to “sugar”:
 
 ``` r
 library(igoR)
@@ -99,10 +98,10 @@ result_sugar <- igo_search("Sugar")
 
 <p class="caption">
 
-Table 1: IGOs related with sugar
+Table 1: IGOs related to sugar
 </p>
 
-### IGO members:
+### IGO members
 
 Composition of the [European Economic
 Community](https://en.wikipedia.org/wiki/European_Economic_Community)
@@ -111,7 +110,7 @@ over time:
 ``` r
 eec_code <- igo_search("EEC", exact = TRUE)
 
-# Founding
+# Get founding members.
 eec_init <- igo_members(eec_code$ioname, year = eec_code$sdate)
 ```
 
@@ -130,7 +129,7 @@ Table 2: EEC, members (1958)
 </p>
 
 ``` r
-# Latest date
+# Get members at the latest available date.
 eec_end <- igo_members(eec_code$ioname)
 ```
 
@@ -156,40 +155,39 @@ Table 3: EEC, members (1992)
 
 ## Recommended packages
 
-- **countrycode** for converting country names and codes across
-  different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc.)
-- **dplyr** for data manipulation.
+- **countrycode** package for converting country names and codes across
+  different systems (ISO3, Eurostat, World Bank, UN, FIPS/GEC, etc.).
+- **dplyr** package for data manipulation.
 
 ## Citation
 
 <p>
 
-Hernangómez D (2026). <em>igoR: Intergovernmental Organizations
-Database</em>.
-<a href="https://doi.org/10.32614/CRAN.package.igoR">doi:10.32614/CRAN.package.igoR</a>,
+Hernangómez D (2026). <em>igoR: Access the Intergovernmental
+Organizations Database</em>.
+<a href="https://doi.org/10.32614/CRAN.package.igoR">doi:10.32614/CRAN.package.igoR</a>.
 <a href="https://dieghernan.github.io/igoR/">https://dieghernan.github.io/igoR/</a>.
 </p>
 
 A BibTeX entry for LaTeX users:
 
     @Manual{R-igoR,
-      title = {{igoR}: Intergovernmental Organizations Database},
+      title = {{igoR}: Access the Intergovernmental Organizations Database},
       doi = {10.32614/CRAN.package.igoR},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.1},
+      version = {1.0.2},
       url = {https://dieghernan.github.io/igoR/},
-      abstract = {Tools to extract information from the Intergovernmental Organizations (IGO) Database (v3), provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020) <doi:10.1177/0022343319881175>.},
+      abstract = {Tools for searching, extracting and recoding information from the Intergovernmental Organizations (IGO) Database (v3), distributed by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J. C. et al. (2020) <doi:10.1177/0022343319881175>.},
     }
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-correlatesofwarproject2017" class="csl-entry">
 
-Correlates of War Project. 2017. “State System Membership List, V2016.”
+Correlates of War Project. 2017. *State System Membership List, V2016*.
 <https://correlatesofwar.org/data-sets/state-system-membership/>.
 
 </div>

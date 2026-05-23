@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,7 @@
 
 <title>Get started with the igoR package</title>
 <style>
+
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
-margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
 margin-left:2em;
@@ -234,46 +234,38 @@ text-decoration: underline; }
 </header>
 
 
-<p>This vignette is meant to provide <strong>useRs</strong> with a visual, explorable introduction to the capabilities of the <strong>igoR</strong> package.</p>
-<p>The analysis is based on those provided in <span class="citation" data-cites="pevehouse2020">J. C. Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>. For more information on the IGO data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs/">Intergovernmental Organizations (v3)</a>.</p>
-<p><em>Note that the dyadic dataset is not provided in the package, due to its size (~500 MB in Stata <code>.dta</code> format). However,</em> <code>igo_dyadic()</code> <em>function provides similar results.</em></p>
+<p>This vignette provides a visual introduction to the <strong>igoR</strong> package.</p>
+<p>The analysis is based on examples from <span class="citation" data-cites="pevehouse2020">Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>. For more information about the IGO data sets and additional downloads, see <a href="https://correlatesofwar.org/data-sets/IGOs/">Intergovernmental Organizations (v3)</a>.</p>
+<p><em>The dyadic data set is not included in the package due to its size (~500 MB in Stata <code>.dta</code> format). However, <code>igo_dyadic()</code> provides similar results.</em></p>
 <h2 id="definitions">Definitions</h2>
-<p>From <span class="citation" data-cites="pevehouse2019">J. Pevehouse, McManus, and Nordstrom (<a href="#ref-pevehouse2019" role="doc-biblioref">2019</a>)</span>:</p>
+<p>From <span class="citation" data-cites="pevehouse2019">Pevehouse et al. (<a href="#ref-pevehouse2019" role="doc-biblioref">2019</a>)</span>:</p>
 <blockquote>
 <h3 id="what-is-an-igo">What is an IGO?</h3>
-<p>The definition of an Intergovernmental Organization (IGO) on the original dataset is based on the following criteria:</p>
+<p>The definition of an Intergovernmental Organization (IGO) in the original data set is based on the following criteria:</p>
 <ol type="1">
 <li>An IGO must consist of at least three members of the <a href="https://correlatesofwar.org/data-sets/cow-country-codes/">COW-defined state system</a>.</li>
-<li>An IGO must hold regular plenary sessions at least once every ten years</li>
+<li>An IGO must hold regular plenary sessions at least once every ten years.</li>
 <li>An IGO must possess a permanent secretariat and corresponding headquarters.</li>
 </ol>
 <h3 id="when-does-an-igo-actually-begin">When does an IGO actually begin?</h3>
-<p>The data sets begins to code an IGO by identifying the first year in which the organization functions. In some cases, individual members are listed by year of accession or signature.</p>
+<p>The data set begins to code an IGO by identifying the first year in which the organization functions. In some cases, individual members are listed by year of accession or signature.</p>
 <h3 id="when-does-an-igo-die">When does an IGO die?</h3>
 <p>Version 3.0 of the IGO data set uses the following criteria:</p>
 <ul>
-<li>An organization is considered terminated when the following words were used to describe the context of the organization:
-<ul>
-<li>Replaced;</li>
-<li>Succeeded;</li>
-<li>Superseded;</li>
-<li>Integrated;</li>
-<li>Merged;</li>
-<li>Dies.</li>
-</ul></li>
+<li>An organization is considered terminated when the following words describe the context of the organization: replaced, succeeded, superseded, integrated, merged or dies.</li>
 </ul>
 </blockquote>
 <h2 id="analysis">Analysis</h2>
-<p>This section provides some quick analysis based on the figures of <span class="citation" data-cites="pevehouse2020">J. C. Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>.</p>
-<h3 id="initial-setup">Initial Setup</h3>
+<p>This section provides a quick analysis based on the figures in <span class="citation" data-cites="pevehouse2020">Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>.</p>
+<h3 id="initial-setup">Initial setup</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igoR)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional libraries</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load helper packages.</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 </div>
-<p>In the first place, we create a custom <code>ggplot2::theme()</code> named <code>theme_igor</code>, which we apply to all our figures:</p>
+<p>First, we create a custom <code>ggplot2::theme()</code> named <code>theme_igor</code>, which is applied to all figures:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theme_igor <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
@@ -299,7 +291,7 @@ text-decoration: underline; }
 <h3 id="igos-overview">IGOs overview</h3>
 <p>The following code extracts the number of IGOs and states included in this package. The years available are 1816 to 2014.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize values by year.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>igos_by_year <span class="ot">&lt;-</span> igo_year_format3 <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">value =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -312,7 +304,7 @@ text-decoration: underline; }
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>all_by_year <span class="ot">&lt;-</span> igos_by_year <span class="sc">%&gt;%</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(countries_by_year) <span class="sc">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For labelling the plot</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Label the plot.</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable =</span> <span class="fu">factor</span>(</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      variable,</span>
@@ -320,15 +312,14 @@ text-decoration: underline; }
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all_by_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1800</span>, <span class="dv">2014</span>)) <span class="sc">+</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">1945</span>, <span class="dv">1989</span>)) <span class="sc">+</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">400</span>) <span class="sc">+</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results.</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all_by_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1800</span>, <span class="dv">2014</span>)) <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">1945</span>, <span class="dv">1989</span>)) <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">400</span>) <span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
 <div class="cell-output-display">
 <div id="fig-f1" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
@@ -342,10 +333,10 @@ Figure 1: IGOs and states in the world system, 1816-2014
 </div>
 </div>
 </div>
-<h3 id="igo-births-and-deaths">IGO Births and deaths</h3>
-<p>This plot shows how many IGOs were “born” and “died” in each year</p>
+<h3 id="igo-births-and-deaths">IGO births and deaths</h3>
+<p>This plot shows how many IGOs were born or died in each year.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Births and deaths by year</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize births and deaths by year.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">igo_search</span>()</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -361,21 +352,20 @@ Figure 1: IGOs and states in the world system, 1816-2014
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">value =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;IGO Deaths&quot;</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>births_and_deads <span class="ot">&lt;-</span> births <span class="sc">%&gt;%</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(deads) <span class="sc">%&gt;%</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year))</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(births_and_deads, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1815</span>, <span class="dv">2015</span>),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1815</span>, <span class="dv">2015</span>, <span class="at">by =</span> <span class="dv">25</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>births_and_deads <span class="ot">&lt;-</span> births <span class="sc">%&gt;%</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(deads) <span class="sc">%&gt;%</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(births_and_deads, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> variable)) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1815</span>, <span class="dv">2015</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1815</span>, <span class="dv">2015</span>, <span class="at">by =</span> <span class="dv">25</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
 <div class="cell-output-display">
 <div id="fig-f2" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
@@ -390,11 +380,11 @@ Figure 2: Birth and death rates of IGOs, 1816-2014
 </div>
 </div>
 <h3 id="igos-across-regions">IGOs across regions</h3>
-<p>A plot with the number of IGOs by region. The definition of region is based on the original definition by <span class="citation" data-cites="pevehouse2020">J. C. Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span>, as provided in the complementary replication data set <span class="citation" data-cites="priorep">(<a href="#ref-priorep" role="doc-biblioref">PRIO 2020</a>)</span>:</p>
+<p>This plot shows the number of IGOs by region. The region definitions are based on <span class="citation" data-cites="pevehouse2020">Pevehouse et al. (<a href="#ref-pevehouse2020" role="doc-biblioref">2020</a>)</span> and the complementary replication data set <span class="citation" data-cites="priorep">(<a href="#ref-priorep" role="doc-biblioref">PRIO 2020</a>)</span>:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>IGOs across regions: codes</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># crossreg and universal codes not included</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-regional and universal codes are not included.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>asia <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">550</span>,</span>
@@ -730,8 +720,8 @@ Figure 2: Birth and death rates of IGOs, 1816-2014
 </details>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># africa, americas, asia, europe, middle_east created in previous chunk</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># collapsed for readability.</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `africa`, `americas`, `asia`, `europe` and `middle_east` were created in the</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># previous chunk, which is collapsed for readability.</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">igo_search</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -746,11 +736,11 @@ Figure 2: Birth and death rates of IGOs, 1816-2014
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ioname, region)</span></code></pre></div>
 </div>
-<p>After we have created a data frame with the regions, we can classify the IGOs by region.</p>
+<p>After creating a data frame with the regions, we can classify IGOs by region.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regions dataset created on previous chunk</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `regions` data set was created in the previous chunk.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># All IGOs</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all IGOs.</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>alligos <span class="ot">&lt;-</span> igo_year_format3 <span class="sc">%&gt;%</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ioname, year)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -759,7 +749,7 @@ Figure 2: Birth and death rates of IGOs, 1816-2014
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, region) <span class="sc">%&gt;%</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">value =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(region)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For plotting</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare for plotting.</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">region =</span> <span class="fu">factor</span>(</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      region,</span>
@@ -773,20 +763,19 @@ Figure 2: Birth and death rates of IGOs, 1816-2014
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(regionsum, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> region)) <span class="sc">+</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">linetype =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">80</span>) <span class="sc">+</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1815</span>, <span class="dv">2015</span>),</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1815</span>, <span class="dv">2015</span>, <span class="at">by =</span> <span class="dv">25</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results.</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(regionsum, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> region)) <span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">linetype =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">80</span>) <span class="sc">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1815</span>, <span class="dv">2015</span>),</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1815</span>, <span class="dv">2015</span>, <span class="at">by =</span> <span class="dv">25</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  theme_igor</span></code></pre></div>
 <div class="cell-output-display">
 <div id="fig-f3" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
@@ -800,12 +789,12 @@ Figure 3: IGO counts across regions, 1816-2014
 </div>
 </div>
 </div>
-<h3 id="selected-countries-asia">Selected Countries: Asia</h3>
-<p>Number of memberships for a country. We select here five countries in Asia: India, China, Pakistan, Indonesia and Bangladesh.</p>
+<h3 id="selected-countries-in-asia">Selected countries in Asia</h3>
+<p>This plot shows the number of memberships for five countries in Asia: India, China, Pakistan, Indonesia and Bangladesh.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>asia5_cntries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;China&quot;</span>, <span class="st">&quot;India&quot;</span>, <span class="st">&quot;Pakistan&quot;</span>, <span class="st">&quot;Indonesia&quot;</span>, <span class="st">&quot;Bangladesh&quot;</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Five countries of Asia</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use five countries in Asia.</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>asia5_igos <span class="ot">&lt;-</span> <span class="fu">igo_state_membership</span>(</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> asia5_cntries,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">1865</span><span class="sc">:</span><span class="dv">2014</span>,</span>
@@ -817,7 +806,7 @@ Figure 3: IGO counts across regions, 1816-2014
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">values =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;keep&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statenme =</span> <span class="fu">factor</span>(statenme, <span class="at">levels =</span> asia5_cntries))</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results.</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(asia5, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> values)) <span class="sc">+</span></span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> statenme)) <span class="sc">+</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
@@ -861,12 +850,12 @@ Figure 4: IGO membership: five states in Asia, 1865-2014
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>spain_selected <span class="ot">&lt;-</span> <span class="fu">igo_dyadic</span>(<span class="st">&quot;Spain&quot;</span>, selected_countries)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute number of shared memberships</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the number of shared memberships.</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>spain_selected <span class="ot">&lt;-</span> spain_selected <span class="sc">%&gt;%</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">values =</span> <span class="fu">sum</span>(<span class="fu">c_across</span>(aaaid<span class="sc">:</span>wassen) <span class="sc">==</span> <span class="dv">1</span>))</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results.</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(spain_selected, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> values)) <span class="sc">+</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> statenme2)) <span class="sc">+</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>)) <span class="sc">+</span></span>
@@ -912,17 +901,17 @@ Figure 5: Number of IGOs with full shared memberships with Spain (selected coun
 </div>
 </div>
 <h2 class="unnumbered" id="references">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-pevehouse2020" class="csl-entry" role="listitem">
 Pevehouse, Jon CW, Timothy Nordstrom, Roseanne W McManus, and Anne Spencer Jamison. 2020. <span>“Tracking Organizations in the World: The <span class="nocase">Correlates of War IGO</span> Version 3.0 Datasets.”</span> <em>Journal of Peace Research</em> 57 (3): 492–503. <a href="https://doi.org/10.1177/0022343319881175">https://doi.org/10.1177/0022343319881175</a>.
 </div>
 <div id="ref-pevehouse2019" class="csl-entry" role="listitem">
-Pevehouse, Jon, Roseanne McManus, and Timothy Nordstrom. 2019. <span>“Codebook for <span>Correlates of War 3 International Governmental Organizations</span> Data Set Version 3.0.”</span><a href="
+Pevehouse, Jon, Roseanne McManus, and Timothy Nordstrom. 2019. <em>Codebook for <span class="nocase">Correlates of War 3 International Governmental Organizations</span> Data Set Version 3.0</em>.<a href="
         https://correlatesofwar.org/wp-content/uploads/IGO-Codebook_v3_short-copy.pdf
     ">https://correlatesofwar.org/wp-content/uploads/IGO-Codebook_v3_short-copy.pdf </a>.
 </div>
 <div id="ref-priorep" class="csl-entry" role="listitem">
-PRIO. 2020. <span>“Replication Datasets: Journal of Peace Research.”</span> <span>Peace Research Institute Oslo</span>; Online. <a href="https://www.prio.org/journals/jpr/replicationdata">https://www.prio.org/journals/jpr/replicationdata</a>.
+PRIO. 2020. <em>Replication Datasets: Journal of Peace Research</em>. <span>Peace Research Institute Oslo</span>; Online. <a href="https://www.prio.org/journals/jpr/replicationdata">https://www.prio.org/journals/jpr/replicationdata</a>.
 </div>
 </div>
 

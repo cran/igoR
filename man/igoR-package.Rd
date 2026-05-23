@@ -4,11 +4,11 @@
 \name{igoR-package}
 \alias{igoR}
 \alias{igoR-package}
-\title{igoR: Intergovernmental Organizations Database}
+\title{igoR: Access the Intergovernmental Organizations Database}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Tools to extract information from the Intergovernmental Organizations ('IGO') Database (v3), provided by the Correlates of War Project \url{https://correlatesofwar.org/}. See also Pevehouse, J. C. et al. (2020) \doi{10.1177/0022343319881175}.
+Tools for searching, extracting and recoding information from the Intergovernmental Organizations ('IGO') Database (v3), distributed by the Correlates of War Project \url{https://correlatesofwar.org/}. See also Pevehouse, J. C. et al. (2020) \doi{10.1177/0022343319881175}.
 }
 \seealso{
 Useful links:
@@ -21,6 +21,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [copyright holder]
+
+Authors:
+\itemize{
+  \item Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [copyright holder]
+}
 
 Other contributors:
 \itemize{

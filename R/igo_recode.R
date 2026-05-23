@@ -1,15 +1,11 @@
 #' Helper functions to recode categories
 #'
 #' @description
-#' These functions convert the numerical code of [igo_year_format3] and
-#' [state_year_format3] into [factors][base::factor].
-#'
-#' - [igo_recode_igoyear()] is intended to work with values on
-#'   [igo_year_format3].
-#' - [igo_recode_stateyear()] is intended to work with values on
-#'   [state_year_format3].
-#' - [igo_recode_dyadic()] is intended to work with values on
-#'   [igo_dyadic()].
+#' These functions convert the numerical codes of [igo_year_format3] and
+#' [state_year_format3] into [factors][base::factor]. Use
+#' [igo_recode_igoyear()] with values from [igo_year_format3],
+#' [igo_recode_stateyear()] with values from [state_year_format3] and
+#' [igo_recode_dyadic()] with values from [igo_dyadic()].
 #'
 #' @encoding UTF-8
 #' @rdname igo_recode
@@ -26,8 +22,7 @@
 #' @examples
 #' data("igo_year_format3")
 #'
-#' # Recode memberships for some countries
-#'
+#' # Recode memberships for some countries.
 #' library(dplyr)
 #'
 #' samp <- igo_year_format3 %>%
@@ -37,7 +32,7 @@
 #'
 #' glimpse(samp)
 #'
-#' # Recode
+#' # Recode.
 #' samp %>%
 #'   mutate(
 #'     spain = igo_recode_igoyear(spain),
@@ -50,14 +45,14 @@ igo_recode_igoyear <- function(x) {
 }
 
 #' @rdname igo_recode
-#' @name  igo_recode_stateyear
+#' @name igo_recode_stateyear
 #' @export
 igo_recode_stateyear <- function(x) {
   igo_hlp_recode(x, what = "stateyear")
 }
 
 #' @rdname igo_recode
-#' @name  igo_recode_dyadic
+#' @name igo_recode_dyadic
 #' @export
 igo_recode_dyadic <- function(x) {
   levs <- c(
@@ -86,8 +81,7 @@ igo_recode_dyadic <- function(x) {
   factor(coded, levels = levs, exclude = NULL)
 }
 
-
-# Helper, vectorised switch with factors
+# Recode values with a vectorized switch and preserve factor levels.
 igo_hlp_recode <- function(x, what = "igoyear") {
   nodata <- ifelse(
     what == "igoyear",

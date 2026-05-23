@@ -1,6 +1,5 @@
 AMSC
 CMD
-CoW
 CodeFactor
 Codebook
 Eurostat
@@ -20,7 +19,6 @@ Pevehouse
 Roseanne
 Stata
 SugU
-Vectorize
 aaaid
 accuracyofpre
 afghanistan
@@ -35,9 +33,9 @@ denmark
 doi
 dplyr
 dyad
+dyads
 endday
 et
-explorable
 france
 geospatial
 germany
@@ -65,7 +63,6 @@ statenme
 styear
 testthat
 uk
-useRs
 wassen
 wgermany
 zimbabwe

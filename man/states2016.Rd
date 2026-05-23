@@ -4,18 +4,18 @@
 \encoding{UTF-8}
 \name{states2016}
 \alias{states2016}
-\title{State System Membership (v2016)}
+\title{State system membership (v2016)}
 \format{
-\code{\link[=data.frame]{data.frame}} with
+\code{\link{data.frame}} with
 243 rows. Relevant fields:
 \itemize{
 \item \strong{ccode}: COW country number.
 \item \strong{stateabb}: COW state abbreviation (3 characters).
 \item \strong{statenme}: COW state name.
-\item \strong{styear...endday}: Fields to identify the beginning and the end of each
+\item \strong{styear...endday}: Fields that identify the beginning and end of each
 tenure.
 \item \strong{version}: Data file version number.
-\item \strong{state}: Abbreviated state name as appear in \link{state_year_format3}.
+\item \strong{state}: Abbreviated state name as it appears in \link{state_year_format3}.
 }
 }
 \source{
@@ -35,23 +35,23 @@ code" or state number (used throughout the Correlates of War project data
 sets), state abbreviations, and dates of membership as states and major
 powers in the international system.
 
-The Correlates of War project includes a state in the international system
-from 1816-2016 for the following criteria:
+The Correlates of War Project includes a state in the international system
+from 1816 to 2016 according to the following criteria:
 \itemize{
-\item \strong{Prior to 1920} the entity must have had a population greater than
+\item \strong{Before 1920}, the entity must have had a population greater than
 500,000 and have had diplomatic missions at or above the rank of charge
 d'affaires with Britain and France.
-\item \strong{After 1920} the entity must be a member of the League of Nations or the
+\item \strong{After 1920}, the entity must be a member of the League of Nations or the
 United Nations, or have a population greater than 500,000 and receive
 diplomatic missions from two major powers.
 }
 }
 \note{
-\code{state} variable added to original data to help comparisons across datasets
-on this package.
+The \code{state} variable was added to the original data to help comparisons
+across data sets in this package.
 }
 \examples{
-# example code
+# Example code.
 data("states2016")
 dplyr::glimpse(states2016)
 }
@@ -60,8 +60,8 @@ Correlates of War Project. 2017 "State System Membership List, v2016."
 Online, \url{https://correlatesofwar.org/}.
 }
 \seealso{
-Other datasets: 
-\code{\link{igo_recode_igoyear}()},
+Other datasets:
+\code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}},
 \code{\link{igo_year_format3}},
 \code{\link{state_year_format3}}
 }
