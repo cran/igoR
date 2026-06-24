@@ -4,34 +4,36 @@
 \encoding{UTF-8}
 \name{state_year_format3}
 \alias{state_year_format3}
-\title{Country membership in IGOs by year}
+\title{Country-year IGO membership data}
 \format{
-\code{\link{data.frame}} with
+A \code{\link{data.frame}} with
 15,557 rows. Relevant
 fields:
 \itemize{
-\item \strong{ccode}: COW country number, see \link{states2016}.
-\item \strong{year}: Calendar year.
-\item \strong{state}: Abbreviated state name, identical to variable names in
+\item \code{ccode}: Correlates of War country number. See \link{states2016}.
+\item \code{year}: Calendar year.
+\item \code{state}: Abbreviated state name, identical to variable names in
 \link{igo_year_format3}.
-\item \strong{aaaid...wassen}: IGO variables containing information on state
-membership status. See \strong{Details}.
+\item \code{aaaid...wassen}: IGO variables containing state membership status. See
+the Details section.
 }
-
-See \href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}}.
 }
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs/}{Intergovernmental Organizations (v3)}, The Correlates of War
-Project (IGO Data Stata Files).
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Intergovernmental Organizations (version 3)}, IGO Data Stata
+Files from
+the Correlates of War Project.
+
+See the \href{https://correlatesofwar.org/data-sets/IGOs/}{Codebook Version 3 IGO Data} for the full
+reference.
 }
 \description{
-Data on IGOs from 1815 to 2014 at the country-year level. Contains one
-record per country-year, with years listed at five-year intervals through
-1965 and annually thereafter.
+Data on IGO membership from 1816 to 2014 at the country-year level. Each row
+represents one country in one year. Years are recorded at five-year
+intervals through 1965 and annually thereafter.
 }
 \details{
 Possible values for the status of a state in the IGO are:\tabular{lr}{
-   \strong{Category} \tab \strong{Numerical Value} \cr
+   \strong{Category} \tab \strong{Numerical value} \cr
    No Membership \tab 0 \cr
    Full Membership \tab 1 \cr
    Associate Membership \tab 2 \cr
@@ -41,19 +43,20 @@ Possible values for the status of a state in the IGO are:\tabular{lr}{
 }
 
 
-See the \code{\link[=igo_recode_stateyear]{igo_recode_stateyear()}} section for an easy way to recode the
-numerical values into \link[base:factor]{factors}.
+Use \code{\link[=igo_recode_stateyear]{igo_recode_stateyear()}} to recode the numerical values as
+\link[base:factor]{factors}.
+
+See the \href{https://correlatesofwar.org/data-sets/IGOs/}{Codebook Version 3 IGO Data}.
 }
 \note{
-Raw data used internally by \CRANpkg{igoR}.
+Data distributed with \CRANpkg{igoR}.
 }
 \examples{
 data("state_year_format3")
 dplyr::tibble(state_year_format3)
-
 }
 \references{
-Pevehouse, J. C., Nordstrom, T., McManus, R. W., & Jamison, A. S. (2020).
+Pevehouse, J. C., Nordstrom, T., McManus, R. W. & Jamison, A. S. (2020).
 Tracking organizations in the world: The Correlates of War IGO Version 3.0
 data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \doi{10.1177/0022343319881175}.
@@ -62,9 +65,8 @@ data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \code{\link[countrycode:countrycode]{countrycode::countrycode()}} to convert between different country code
 schemes.
 
-Other datasets:
-\code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}},
+Other data sets:
 \code{\link{igo_year_format3}},
 \code{\link{states2016}}
 }
-\concept{datasets}
+\concept{data sets}

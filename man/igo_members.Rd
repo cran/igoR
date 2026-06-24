@@ -3,28 +3,30 @@
 \encoding{UTF-8}
 \name{igo_members}
 \alias{igo_members}
-\title{Extract members of an IGO}
+\title{Extract IGO membership records}
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}} for full reference.
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Codebook Version 3 IGO Data} for the full
+reference.
 }
 \usage{
 igo_members(ioname, year = NULL, status = "Full Membership")
 }
 \arguments{
-\item{ioname}{Any valid \code{ioname} for an IGO as specified in
-\link{igo_year_format3}. This can also be a vector of IGOs.}
+\item{ioname}{An IGO identifier or vector of identifiers from
+\link{igo_year_format3}. Use \code{\link[=igo_search]{igo_search()}} to find valid identifiers.}
 
-\item{year}{Year to assess, as an integer or vector of years. If
-\code{NULL}, the latest year available for the IGO is extracted.}
+\item{year}{An integer or vector of years to assess. If \code{NULL}, the latest
+available year for each IGO is used.}
 
-\item{status}{Character or vector with the membership status to be extracted.
-See \strong{Details} in \link{state_year_format3}.}
+\item{status}{A character vector of membership statuses to extract. See
+\link{state_year_format3} for valid statuses.}
 }
 \value{
-A \code{\link{data.frame}}.
+A \code{\link{data.frame}} with one row per matching state, IGO, year and
+membership status.
 }
 \description{
-Extract all countries that belong to an IGO on a specific date.
+Extracts state-level membership records for one or more IGOs and years.
 }
 \examples{
 library(dplyr)
@@ -32,7 +34,7 @@ igo_members("EU", year = 1993) \%>\% as_tibble()
 igo_members("EU") \%>\% as_tibble()
 igo_members("NAFTA", year = c(1995:1998)) \%>\% as_tibble()
 
-# Extract different statuses.
+# Extract multiple membership statuses.
 igo_members("ACCT", status = c("Associate Membership", "Observer")) \%>\%
   as_tibble()
 
@@ -40,12 +42,12 @@ igo_members("ACCT", status = c("Associate Membership", "Observer")) \%>\%
 igo_members("UN", status = "No Membership") \%>\%
   as_tibble()
 
-# Vectorized.
+# Vectorized search.
 igo_members(c("NAFTA", "EU"), year = 1993) \%>\%
   as_tibble() \%>\%
   arrange(state)
 
-# Use the countrycode package to get additional codes.
+# Use the countrycode package to add codes.
 if (requireNamespace("countrycode", quietly = TRUE)) {
   library(countrycode)
   EU <- igo_members("EU")
@@ -60,11 +62,16 @@ if (requireNamespace("countrycode", quietly = TRUE)) {
 }
 }
 \references{
-Pevehouse, J. C., Nordstrom, T., McManus, R. W., & Jamison, A. S. (2020).
+Pevehouse, J. C., Nordstrom, T., McManus, R. W. & Jamison, A. S. (2020).
 Tracking organizations in the world: The Correlates of War IGO Version 3.0
 data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \doi{10.1177/0022343319881175}.
 }
 \seealso{
 \link{igo_year_format3}, \code{\link[=igo_search]{igo_search()}}, \link{state_year_format3}.
+
+Other membership functions:
+\code{\link[=igo_dyadic]{igo_dyadic()}},
+\code{\link[=igo_state_membership]{igo_state_membership()}}
 }
+\concept{membership functions}

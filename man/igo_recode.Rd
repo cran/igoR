@@ -5,7 +5,7 @@
 \alias{igo_recode_igoyear}
 \alias{igo_recode_stateyear}
 \alias{igo_recode_dyadic}
-\title{Helper functions to recode categories}
+\title{Recode membership categories}
 \usage{
 igo_recode_igoyear(x)
 
@@ -14,14 +14,14 @@ igo_recode_stateyear(x)
 igo_recode_dyadic(x)
 }
 \arguments{
-\item{x}{Numerical value (or vector of values) to recode.}
+\item{x}{A numerical value or vector of values to recode.}
 }
 \value{
-The recoded values as \link[base:factor]{factors}.
+A \link[base:factor]{factor} with the recoded membership categories.
 }
 \description{
-These functions convert the numerical codes of \link{igo_year_format3} and
-\link{state_year_format3} into \link[base:factor]{factors}. Use
+Converts the numerical membership codes in \link{igo_year_format3},
+\link{state_year_format3} and \code{\link[=igo_dyadic]{igo_dyadic()}} into \link[base:factor]{factors}. Use
 \code{\link[=igo_recode_igoyear]{igo_recode_igoyear()}} with values from \link{igo_year_format3},
 \code{\link[=igo_recode_stateyear]{igo_recode_stateyear()}} with values from \link{state_year_format3} and
 \code{\link[=igo_recode_dyadic]{igo_recode_dyadic()}} with values from \code{\link[=igo_dyadic]{igo_dyadic()}}.
@@ -29,7 +29,7 @@ These functions convert the numerical codes of \link{igo_year_format3} and
 \examples{
 data("igo_year_format3")
 
-# Recode memberships for some countries.
+# Recode memberships for some states.
 library(dplyr)
 
 samp <- igo_year_format3 \%>\%
@@ -39,19 +39,12 @@ samp <- igo_year_format3 \%>\%
 
 glimpse(samp)
 
-# Recode.
+# Recode the membership columns.
 samp \%>\%
   mutate(
     spain = igo_recode_igoyear(spain),
     france = igo_recode_igoyear(france)
   ) \%>\%
   glimpse()
-
 }
-\seealso{
-Other datasets:
-\code{\link{igo_year_format3}},
-\code{\link{state_year_format3}},
-\code{\link{states2016}}
-}
-\concept{datasets}
+\concept{recode helpers}

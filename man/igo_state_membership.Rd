@@ -3,28 +3,30 @@
 \encoding{UTF-8}
 \name{igo_state_membership}
 \alias{igo_state_membership}
-\title{Extract memberships of a state}
+\title{Extract IGO membership records for states}
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}} for full reference.
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Codebook Version 3 IGO Data} for the full
+reference.
 }
 \usage{
 igo_state_membership(state, year = NULL, status = "Full Membership")
 }
 \arguments{
-\item{state}{Any valid state name or code as specified in \link{states2016}. This
-can also be a vector of states.}
+\item{state}{A state name or code, or a vector of names or codes, as
+specified in \link{states2016}.}
 
-\item{year}{Year to assess, as an integer or vector of years. If
-\code{NULL}, the latest year available for the state is extracted.}
+\item{year}{An integer or vector of years to assess. If \code{NULL}, the latest
+available year for each state is used.}
 
-\item{status}{Character or vector with the membership status to be extracted.
-See \strong{Details} in \link{igo_year_format3}.}
+\item{status}{A character vector of membership statuses to extract. See
+\link{igo_year_format3} for valid statuses.}
 }
 \value{
-A \code{\link{data.frame}}.
+A \code{\link{data.frame}} with one row per matching state, year, IGO and
+membership status.
 }
 \description{
-Extract all IGO memberships of a state on a specific date.
+Extracts IGO membership records for one or more states and years.
 }
 \examples{
 # Memberships on two different dates.
@@ -32,22 +34,22 @@ igo_state_membership("Spain", year = 1850)
 igo_state_membership("Spain", year = 1870)
 igo_state_membership("Spain", year = 1880:1882)
 
-# Last year.
+# Use the latest available year.
 igo_state_membership("ZAN")[, 1:7]
 
-# Use codes to get countries.
+# Search by state code.
 igo_state_membership("2", year = 1865)
 
-# Extract different statuses.
+# Extract multiple membership statuses.
 igo_state_membership("kosovo", status = c(
   "Associate Membership", "Observer",
   "Full Membership"
 ))
 
-# Vectorized.
+# Vectorized search.
 igo_state_membership(c("usa", "spain"), year = 1870:1871)
 
-# Use the countrycode package to get additional codes.
+# Use the countrycode package to add codes.
 if (requireNamespace("countrycode", quietly = TRUE)) {
   library(countrycode)
   IT <- igo_state_membership("Italy", year = 1880)
@@ -56,11 +58,16 @@ if (requireNamespace("countrycode", quietly = TRUE)) {
 }
 }
 \references{
-Pevehouse, J. C., Nordstrom, T., McManus, R. W., & Jamison, A. S. (2020).
+Pevehouse, J. C., Nordstrom, T., McManus, R. W. & Jamison, A. S. (2020).
 Tracking organizations in the world: The Correlates of War IGO Version 3.0
 data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \doi{10.1177/0022343319881175}.
 }
 \seealso{
 \link{igo_year_format3}, \code{\link[=igo_search_states]{igo_search_states()}}, \link{states2016}.
+
+Other membership functions:
+\code{\link[=igo_dyadic]{igo_dyadic()}},
+\code{\link[=igo_members]{igo_members()}}
 }
+\concept{membership functions}

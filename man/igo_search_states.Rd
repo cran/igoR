@@ -3,22 +3,25 @@
 \encoding{UTF-8}
 \name{igo_search_states}
 \alias{igo_search_states}
-\title{Find codes and names of a state}
+\title{Find state codes, abbreviations and names}
 \source{
-\href{https://correlatesofwar.org/data-sets/IGOs/}{\strong{Codebook Version 3 IGO Data}} for full reference.
+\href{https://correlatesofwar.org/data-sets/IGOs/}{Codebook Version 3 IGO Data} for the full
+reference.
 }
 \usage{
 igo_search_states(state)
 }
 \arguments{
-\item{state}{Any valid state name or code as specified in \link{states2016}. This
-can also be a vector of states.}
+\item{state}{A state name or code, or a vector of names or codes, as
+specified in \link{states2016}.}
 }
 \value{
-A \code{\link{data.frame}}.
+A \code{\link{data.frame}} with Correlates of War country codes,
+abbreviations, names and the matching \code{state} identifiers used by
+\link{state_year_format3}.
 }
 \description{
-Find codes and names of a state.
+Finds Correlates of War codes, abbreviations and names for states.
 }
 \examples{
 library(dplyr)
@@ -34,11 +37,15 @@ igo_search_states(c("Germany", "papal states")) \%>\% as_tibble()
 igo_search_states(c("FRN", "United Kingdom", 240, "italy")) \%>\% as_tibble()
 }
 \references{
-Pevehouse, J. C., Nordstrom, T., McManus, R. W., & Jamison, A. S. (2020).
+Pevehouse, J. C., Nordstrom, T., McManus, R. W. & Jamison, A. S. (2020).
 Tracking organizations in the world: The Correlates of War IGO Version 3.0
 data sets. \emph{Journal of Peace Research, 57}(3), 492–503.
 \doi{10.1177/0022343319881175}.
 }
 \seealso{
 \link{states2016}.
+
+Other query functions:
+\code{\link[=igo_search]{igo_search()}}
 }
+\concept{query functions}

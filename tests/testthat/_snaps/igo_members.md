@@ -3,20 +3,20 @@
     Code
       res <- igo_members("Error")
     Message
-      ioname 'Error' not found in the database.
+      Unknown value for `ioname`: 'Error'.
     Condition
       Warning in `igo_members()`:
-      No IGO results found with the required arguments.
+      No IGO membership records were found for the supplied arguments.
 
 ---
 
     Code
       res <- igo_members("EU", year = 1900)
     Message
-      ioname 'EU' was available only between 1993 and 2014.
+      IGO 'EU' is available from 1993 to 2014.
     Condition
       Warning in `igo_members()`:
-      No IGO results found with the required arguments.
+      No IGO membership records were found for the supplied arguments.
 
 ---
 
@@ -25,17 +25,17 @@
         "Full Membership", "Observer"))
     Condition
       Warning in `igo_members()`:
-      Status 'Nope' is not valid. Valid values are 'No Membership', 'Full Membership', 'Associate Membership', 'Observer', 'Missing data', 'IGO Not In Existence'.
+      Unknown values for `status`: 'Nope'. Valid values are 'No Membership', 'Full Membership', 'Associate Membership', 'Observer', 'Missing data', 'IGO Not In Existence'.
 
 ---
 
     Code
       res <- igo_members("EU", status = "Observer")
     Message
-      No members for ioname 'EU' with the arguments provided.
+      No membership records for IGO 'EU' matched the supplied arguments.
     Condition
       Warning in `igo_members()`:
-      No IGO results found with the required arguments.
+      No IGO membership records were found for the supplied arguments.
 
 # Object classes
 
@@ -52,5 +52,5 @@
     Code
       var_err <- igo_members(c("EU", "an invented", "UN"))
     Message
-      ioname 'an invented' not found in the database.
+      Unknown value for `ioname`: 'an invented'.
 

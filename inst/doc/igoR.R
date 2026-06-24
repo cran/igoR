@@ -34,7 +34,7 @@ theme_igor <- theme(
 
 ## -----------------------------------------------------------------------------
 #| label: fig-f1
-#| fig-cap: "IGOs and states in the world system, 1816-2014"
+#| fig-cap: "IGOs and COW states in the state system, 1816-2014"
 # Summarize values by year.
 igos_by_year <- igo_year_format3 %>%
   group_by(year) %>%
@@ -68,8 +68,8 @@ ggplot(all_by_year, aes(x = year, y = value)) +
 
 ## -----------------------------------------------------------------------------
 #| label: fig-f2
-#| fig-cap: "Birth and death rates of IGOs, 1816-2014"
-# Summarize births and deaths by year.
+#| fig-cap: "IGO starts and endings, 1816-2014"
+# Summarize IGO starts and endings by year.
 
 df <- igo_search()
 
@@ -509,7 +509,7 @@ ggplot(regionsum, aes(x = year, y = value)) +
 #| fig-cap: "IGO membership: five states in Asia, 1865-2014"
 asia5_cntries <- c("China", "India", "Pakistan", "Indonesia", "Bangladesh")
 
-# Use five countries in Asia.
+# Use five states in Asia.
 asia5_igos <- igo_state_membership(
   state = asia5_cntries,
   year = 1865:2014,
@@ -549,13 +549,13 @@ ggplot(asia5, aes(x = year, y = values)) +
 
 ## -----------------------------------------------------------------------------
 #| label: fig-f5
-#| fig-cap: Number of IGOs with full shared memberships with Spain (selected
-#|   countries), 1816-2014
+#| fig-cap: Number of IGOs with full joint memberships with Spain (selected
+#|   states), 1816-2014
 selected_countries <- c("France", "Morocco", "China", "USA")
 
 spain_selected <- igo_dyadic("Spain", selected_countries)
 
-# Compute the number of shared memberships.
+# Compute the number of full joint memberships.
 spain_selected <- spain_selected %>%
   rowwise() %>%
   mutate(values = sum(c_across(aaaid:wassen) == 1))

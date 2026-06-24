@@ -3,11 +3,13 @@ abs <- trimws(gsub("\\s+", " ", meta$Description))
 abs <- gsub("'", "", abs)
 pkg <- meta$Package
 doi <- paste0("10.32614/CRAN.package.", pkg)
+title <- gsub("'", "", meta$Title)
+title <- gsub("IGO", "{IGO}", title)
 
 bibentry(
   "Manual",
   header = paste0("To cite '", pkg, "' in publications use:"),
-  title = paste0("{", pkg, "}: ", gsub("'", "", meta$Title)),
+  title = paste0("{", pkg, "}: ", title),
   doi = doi,
   author = c(person("Diego", "Hernangómez")),
   year = year,
@@ -20,7 +22,7 @@ bibentry(
 # Pevehouse, Jon CW, et al.
 bibentry(
   "Article",
-  header = "Please cite also:",
+  header = "Please also cite:",
   author = c(
     person("Jon CW", "Pevehouse"),
     person("Timothy", "Nordstrom", comment = c(ORCID = "0000-0002-1264-9590")),

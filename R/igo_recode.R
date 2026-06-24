@@ -1,28 +1,29 @@
-#' Helper functions to recode categories
+#' Recode membership categories
+#'
+#' @name igo_recode_igoyear
+#' @rdname igo_recode
 #'
 #' @description
-#' These functions convert the numerical codes of [igo_year_format3] and
-#' [state_year_format3] into [factors][base::factor]. Use
+#' Converts the numerical membership codes in [igo_year_format3],
+#' [state_year_format3] and [igo_dyadic()] into [factors][base::factor]. Use
 #' [igo_recode_igoyear()] with values from [igo_year_format3],
 #' [igo_recode_stateyear()] with values from [state_year_format3] and
 #' [igo_recode_dyadic()] with values from [igo_dyadic()].
 #'
-#' @encoding UTF-8
-#' @rdname igo_recode
-#' @name igo_recode_igoyear
-#' @param x Numerical value (or vector of values) to recode.
+#' @param x A numerical value or vector of values to recode.
+#'
+#' @returns
+#' A [factor][base::factor] with the recoded membership categories.
+#'
+#' @family recode helpers
 #'
 #' @export
-#'
-#' @return
-#' The recoded values as [factors][base::factor].
-#'
-#' @family datasets
+#' @encoding UTF-8
 #'
 #' @examples
 #' data("igo_year_format3")
 #'
-#' # Recode memberships for some countries.
+#' # Recode memberships for some states.
 #' library(dplyr)
 #'
 #' samp <- igo_year_format3 %>%
@@ -32,27 +33,26 @@
 #'
 #' glimpse(samp)
 #'
-#' # Recode.
+#' # Recode the membership columns.
 #' samp %>%
 #'   mutate(
 #'     spain = igo_recode_igoyear(spain),
 #'     france = igo_recode_igoyear(france)
 #'   ) %>%
 #'   glimpse()
-#'
 igo_recode_igoyear <- function(x) {
   igo_hlp_recode(x, what = "igoyear")
 }
 
-#' @rdname igo_recode
 #' @name igo_recode_stateyear
+#' @rdname igo_recode
 #' @export
 igo_recode_stateyear <- function(x) {
   igo_hlp_recode(x, what = "stateyear")
 }
 
-#' @rdname igo_recode
 #' @name igo_recode_dyadic
+#' @rdname igo_recode
 #' @export
 igo_recode_dyadic <- function(x) {
   levs <- c(
@@ -81,7 +81,7 @@ igo_recode_dyadic <- function(x) {
   factor(coded, levels = levs, exclude = NULL)
 }
 
-# Recode values with a vectorized switch and preserve factor levels.
+# Preserve factor levels while recoding membership values.
 igo_hlp_recode <- function(x, what = "igoyear") {
   nodata <- ifelse(
     what == "igoyear",
